@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+	<title>Jooha-Clothes</title>
+
+	<!-- meta -->
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+	<meta name="description" content="">
+
+	<!-- link -->
+	<link rel="stylesheet" href="css/index.css">
+	<link rel="stylesheet" href="css/responsive.css">
+	<!-- <link rel="stylesheet" href="fontawesome/css/all.css"> -->
+
+	<!-- script -->
+	<script src="https://kit.fontawesome.com/b9a9bf6e53.js" crossorigin="anonymous"></script>
+	<script src="js/cart-data.js"></script>
+</head>
+
+<body class="pm0" data-nama="home">
+
+<p class="text-banner">vero elementum ferri splendide</p>
+<nav class="navbar">
+	<div class="nav-left">
+		<label for="check" class="checkbtn" id="checkbtn"><i class="fas fa-bars"></i>
+		</label>
+	</div>
+	<a id="nav-logo" href="#"><img src="" alt=""> Jooha-Clothes</a>
+	<input type="checkbox" id="check">
+	<ul id="nav-menu">
+  		<li class="nav-list"><a class="nav-list-link promo active" href="#">Promo</a></li>
+  		<li class="nav-list"><a class="nav-list-link produk" href="#produk">Produk</a></li>
+  		<li class="nav-list"><a class="nav-list-link kontak" href="#kontak">Kontak</a></li>
+		<li class="nav-page">
+			<a class="nav-page-link" href="about_us.html">Tentang Kami</a>
+			<a class="nav-page-link" href="kebijakan.html">Kebijakan</a>
+		</li>
+  		<li class="nav-close" onclick="navClose()"><i class="fas fa-times-circle"></i></li>
+	</ul>
+	<div class="nav-fitur">
+		<i class="fas fa-cart-arrow-down shopCartBox"><span id="cart-count" class="count"></span></i>
+	</div>
+</nav>
+
+<div id="full-page"></div>
+<div class="cart-box pm0" id="cartBox">
+	<div class="cart-head pm0">
+		<h3 class="pm0"><i class="fas fa-shopping-cart"></i> | Keranjang Anda</h3>
+		<i class="fas fa-window-close cart-close"></i>
+	</div>
+	<div class="cart-content">
+		<div class="tabel-content">
+			<table id="cart-table">
+				<tbody>
+					<!-- cart item content -->
+				</tbody>
+			</table>
+		</div>
+		<div class="cart-action" id="cart-action">
+			<div class="cart-ket">
+				<span class="tot-harga" id="tot-harga"></span>
+				<span class="tot-item" id="tot-item"></span>
+				<span title="Hapus Semua" onclick="clearAll()" class="hapus-semua" id="hapus-semua"><i class="fas fa-trash"></i> - Hapus</span>
+			</div>
+			<div class="check-out">
+				<button class="check-out-button" onclick="location.replace('order.html?q=all')">Check Out &nbsp <i class="fas fa-angle-double-right"></i></button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<header id="header" class="pm0">
+	<section id="promo" class="promo"></section>
+	<div class="slide-show pm0">
+ 		<div class="slide slideOn slide1 pm0">
+			<img src="image/gallery-img-01.jpg" alt="" class="img img-slide slideOn">
+			<div class="slideText slideOn">
+ 		 		<!-- <h2 class="pm0">latine inimicus</h2> -->
+ 		 		<p class="pm0">
+					Ponderum repudiare omittantur evertitur platonem nullam felis laudem vocent massa brute referrentur eleifend vitae ea
+					Lorem ipsum dolor sit amet consectetur adipisicing elit.
+				</p>
+				<a class="buy pm0" href="#">ORDER</a>
+ 		 	</div>
+ 		</div><!-- slide 1 -->
+
+ 		<div class="slide slide2 pm0">
+			<img src="image/gallery-img-02.jpg" alt="" class="img img-slide">
+			<div class="slideText">
+				<!-- <h2 class="pm0">latine inimicus</h2> -->
+				<p class="pm0">
+				  Ponderum repudiare omittantur evertitur platonem nullam felis laudem vocent massa brute referrentur eleifend vitae ea
+				  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+			  	</p>
+			  	<a class="buy pm0" href="#">ORDER</a>
+ 		 	</div>
+ 		</div> <!-- slide 2 -->
+
+ 		<div class="slide slide3 pm0">
+			<img src="image/gallery-img-03.jpg" alt="" class="img img-slide">
+			<div class="slideText">
+				<!-- <h2 class="pm0">latine inimicus</h2> -->
+				<p class="pm0">
+				  Ponderum repudiare omittantur evertitur platonem nullam felis laudem vocent massa brute referrentur eleifend vitae ea
+				  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+			  	</p>
+			  <a class="buy pm0" href="#">ORDER</a>
+ 		 	</div>
+ 		</div><!-- slide 3 -->
+
+ 		<div class="slide slide4 pm0">
+ 		 	<img src="image/images(6).jpeg" alt="" class="img img-slide">
+ 		 	<div class="slideText">
+				<!-- <h2 class="pm0">latine inimicus</h2> -->
+				<p class="pm0">
+				  Ponderum repudiare omittantur evertitur platonem nullam felis laudem vocent massa brute referrentur eleifend vitae ea
+				  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+			  	</p>
+			  	<a class="buy pm0" href="#">ORDER</a>
+ 		 	</div>
+ 		</div><!-- slide 4 -->
+
+		<div class="navigasi">
+			<span class="slTombol slideOn">Promo One</span>
+			<span class="slTombol">Special Event</span>
+			<span class="slTombol">Promo Two</span>
+			<span class="slTombol">Special Event</span>
+		</div>
+
+	</div><!-- slide show -->
+</header>
+
+
+
+<section class="produk pm0" id="produk">
+	<h1>PRODUK KAMI</h1>
+	<div class="produk-box">
+		<div class="produk-headings">
+			<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Similique vel harum consequatur quod temporibus autem perferendis nesciunt optio hic est!</p>
+		</div><!-- produk headings -->
+		
+		<div class="produk-kontrol">
+			<div class="produk-search">
+				<input onkeyup="search()" name="search" type="text" id="search" placeholder="Temukan yang kamu cari..">
+				<i class="fas fa-search"></i>
+			</div>
+			<div class="produk-tabs">
+				<div class="tabs-button">
+					<button class="tabs-prod-button" onclick="allProd()">Semua</button>
+					<button class="tabs-prod-button" id="tabsButton"><i class="fas fa-play" ></i></button> 
+				</div>
+				<div class="tabs-group" id="tabs-group">
+					<label><span>Jaket</span><i class="fas fa-play tabsClickButton"></i>
+						<div class="tabs-child">
+							<li class="prodTipe">Tipe A</li>
+							<li class="prodTipe">Tipe B</li>
+							<li class="prodTipe">Tipe C</li>
+							<li class="prodTipe">Tipe D</li>
+						</div>
+					</label>
+					<label><span>T-shirt</span><i class="fas fa-play tabsClickButton"></i>
+						<div class="tabs-child">
+							<li class="prodTipe">Tipe E</li>
+							<li class="prodTipe">Tipe F</li>
+							<li class="prodTipe">Tipe G</li>
+							<li class="prodTipe">Tipe H</li>
+						</div>
+					</label>
+					<label><span>Kemeja</span><i class="fas fa-play tabsClickButton"></i>
+						<div class="tabs-child">
+							<li class="prodTipe">Tipe I</li>
+							<li class="prodTipe">Tipe J</li>
+							<li class="prodTipe">Tipe K</li>
+							<li class="prodTipe">Tipe L</li>
+						</div>
+					</label>
+					<label><span>Blus</span><i class="fas fa-play tabsClickButton"></i>
+						<div class="tabs-child">
+							<li class="prodTipe">Tipe M</li>
+							<li class="prodTipe">Tipe N</li>
+							<li class="prodTipe">Tipe O</li>
+							<li class="prodTipe">Tipe P</li>
+						</div>
+					</label>
+				</div>
+			</div>
+		</div> <!-- produk kontrol -->
+		<div id="prodKontent" class="produk-content">
+			<!-- konten in save -->
+		</div><!-- produk content -->
+	</div> <!-- produk box -->
+</section>
+
+
+
+
+<!-- kontak -->
+<section class="kontak pm0" id="kontak">
+	<div class="kontak-box">
+		<div class="kontak-head">
+			<h1>KONTAK</h1>
+			<p class="kontak-text">	Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque rem, asperiores, explicabo cupiditate possimus magni est unde quaerat maiores dolor repellendus dicta, consequuntur similique mollitia natus aliquid tempora odio sint!, ipsum dolor sit amet consectetur adipisicing elit.</p>
+		</div> <!-- kontak head -->
+		<div class="kontak-list">
+			<div class="kontak-numbar"> 
+				<button class="numbar-list wa">
+					<a href="#kontak" class="numbar-link wa"><img src="image/png/11.svg"> WhatsApp Num</a></button>
+				<button class="numbar-list ig">
+					<a href="#kontak" class="numbar-link ig"><img src="image/png/13.svg"> @Instagram</a></button>
+				<button class="numbar-list facebook">
+					<a href="#kontak" class="numbar-link facebook"><img src="image/png/facebook.svg"> Halaman FB</a></button>
+			</div>
+			<div class="kontak-label">
+				<label class="phone">
+					<a class="phone-link"><i class="fas fa-phone"></i><span>+62813-5474-1823 </span></a></label>
+				<label class="email">
+					<a class="email-link"><i class="fas fa-envelope"></i><span>JoohaClothes@gmail.com</span></a></label>
+				<label class="address">
+					<a class="address-link"><i class="fas fa-map-marker-alt"></i><span>Lorem St. No 13. Ambon City, Indonesia 97233</span></a></label>
+			</div>
+			<div class="maps dis-none">
+				<div class="maps-box">
+
+				</div>
+			</div>
+		</div> <!-- kontak list -->
+	</div>
+</section>
+
+
+
+<!-- foooter -->
+<section class="footer">
+	<div class="footer-box">
+		<div class="footer-content">
+			<h4>About Us</h4>
+			<p class="about-text">	Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui saepe eaque temporibus expedita in molestiae asperiores possimus incidunt similique? Ipsum Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eos, rem cum.</p>
+		</div>
+		<div class="footer-content">
+			<h4>Content-Type</h4>
+			<p class="about-text">	Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui saepe eaque temporibus expedita in molestiae asperiores possimus incidunt similique? Ipsum Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+		</div>
+		<div class="footer-content">
+			<h4>Open Hours</h4>
+			<ul>
+				<li><p>Open Every Day, <br>
+					From 07.00 AM - 11.00 PM, <br>
+					Except Sunday.</p>
+				</li>
+			</ul>
+		</div>
+		<!-- <div class="footer-content">
+			<img src="" alt="">
+		</div> -->
+		
+	</div>
+</section>
+
+<footer class="pm0">
+	<p class="pm0">Didesain dengan Kasih, atas ikatan persahabatan. By bendhard16</p>
+</footer>
+
+<!-- JS File -->
+<script src="js/index.js"></script>
+<script src="js/cart-home.js"></script>
+<script src="js/slide-home.js"></script>
+
+<!-- script -->
+
+</body>
+</html>
