@@ -1,0 +1,375 @@
+
+*{
+	box-sizing: border-box;
+	color: white;
+}
+::placeholder {
+	color: gray;
+}
+
+
+body {
+	padding: 0;
+	margin: 0;
+}
+button {
+	outline: none !important;
+	cursor: pointer;
+}
+a {
+	text-decoration: none !important;
+	color: white;
+}
+
+.body-box {
+	padding: 0 7%;
+	margin: 0;
+}
+nav.navbar {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	position: relative;
+	padding: 10px;
+	width: 100%;
+	z-index: 9;
+	background: white;
+	height: 45px;
+	border-radius: 0 0 8px 8px;
+	box-shadow: 0 6px 15px rgba(0, 0, 0, .5);
+	
+}
+.nav-bottom {
+	margin-bottom: 20px;
+}
+.navbar .left {
+	display: flex;
+	align-items: center;
+}
+.navbar .left i {
+	color: white;
+	font-weight: bold;
+	font-size: 12px;
+	text-transform: uppercase;
+	height: 18px;
+	width: 18px;
+	background: #123;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 100%;
+	cursor: pointer;
+}
+.navbar .left #nav-logo {
+	color: #123;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+.navbar h3 {
+	color: #123;
+}
+.navbar label.to-home a {
+	color: #123;
+	font-weight: bold;
+}
+.navbar label.to-home a i {
+	color: #123;
+}
+
+
+
+.container {
+	padding: 25px 20px 0;
+	margin: 0;
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-around;
+	background: linear-gradient(45deg, #123, black);
+	border-radius: 8px 8px 0 0;
+	box-shadow: 0 6px 15px rgba(0, 0, 0, .5);
+	height: calc(100vh - 65px);
+	overflow: hidden;
+}
+
+
+
+.form-order {
+	flex: 1;
+	width: 47%;
+	margin-right: 15px;
+}
+.form-order p.order-head {
+	text-indent: 30px;
+	text-align: justify;
+	margin: 0;
+}
+.form-order .form-group {
+	display: flex;
+	align-items: center;
+	width: 100%;
+	margin: 10px 0 3px;
+	padding: 0;
+}
+.form-group label{
+	width: 127px;
+	font-weight: bold;
+}
+.form-group input, .form-group textarea {
+	background: transparent;
+	border-radius: 5px;
+	padding: 8px;
+	border: 2px outset white;
+}
+.form-group .input-main {
+	flex: 1;
+}
+.form-group textarea {
+	height: auto;
+}
+.form-group textarea:focus, .form-group input:focus {
+	outline: none;
+}
+.form-alert {
+	text-align: right;
+	margin: 0 0 5px;
+	font-size: 12px;
+	text-decoration: underline ;
+	color: red;
+}
+.form-order .order-submit button {
+	display: block;
+}
+.form-order .order-submit button.disabled {
+	background: gray;
+	border-color: gray;
+	color: gray;
+}
+.form-order .order-submit .agree {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.form-order .order-submit .agree {
+	padding: 4px;
+}
+.form-order .order-submit .agree input[type=checkbox] {
+	background: transparent;
+	color: transparent;
+	transform: scale(.8);
+	border-radius: 5px;
+	cursor: pointer;
+}
+.form-order .order-submit .agree label{
+	font-size: 11px;
+	cursor: pointer;
+}
+.form-order .order-submit .agree label.ket{
+	font-size: 13px;
+	color: red;
+	text-decoration: underline;
+}
+.form-order .order-submit .agree label a{
+	text-decoration: underline !important;
+	color: turquoise;
+}
+.form-order .order-submit button{
+	padding: 6px 16px;
+	border-radius: 5px;
+	border-color: white;
+	margin: 10px auto;
+	font-size: 17px;
+	background-image: linear-gradient(45deg,#25D366, #075E54);
+	color: white;
+	text-transform: uppercase;
+}
+.form-order p.order-text {
+	text-align: center;
+	margin: 15px auto;
+	display: block;
+	text-decoration: underline;
+}
+.form-order p.order-ket {
+	margin: 15px auto;
+	display: block;
+	font-size: 11px;
+}
+
+
+
+.black{
+	position: fixed;
+	left: 0;
+	top: 0;
+	height: 100vh;
+	width: 100%;
+	display: none;
+	z-index: 12;
+	background: rgba(0, 0, 0, .7);
+	backdrop-filter: blur(3px);
+}
+.black.block{
+	display: block;
+}
+.to-wa {
+	position: fixed;
+	z-index: 15;
+	top: -250px;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	padding: 15px;
+	background: linear-gradient(45deg, #123, black);
+	border: 2px outset white;
+	border-radius: 5px;
+	box-shadow: 0 6px 20px rgba(0, 0, 0, .5);
+}
+.to-wa.order {
+	top: 50%;
+	transition: all 1s ease-in-out;
+}
+.to-wa p {
+	width: 300px;
+	text-align: center;
+	padding-bottom: 5px;
+	margin: 0;
+	font-size: 14px;
+}
+.to-wa button {
+	display: flex;
+	align-items: center;
+	margin: 5px auto;
+	padding: 0;
+	background: transparent;
+	border: none;
+}
+
+.to-wa button img {
+	filter:  drop-shadow(0 3px 7px rgba(0,0,0,.5));
+	-webkit-filter: drop-shadow(0 3px 7px rgba(0,0,0,.5));
+	height: 18px;
+	width: 18px;
+	margin: 0;
+	padding: 0;
+}
+
+
+
+
+
+.cart{
+	position: relative;
+	flex: 1;
+	display: block;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	margin: 0;
+	max-height: calc(100vh - 100px);
+}
+.cart::-webkit-scrollbar {
+	width: 7px;
+	cursor: pointer;
+}
+.cart::-webkit-scrollbar-track {
+	background: transparent;
+}
+.cart::-webkit-scrollbar-thumb {
+	background: transparent;
+	border-radius: 100px;
+}
+.cart:hover::-webkit-scrollbar-thumb {
+	background: white;
+}
+.cart::-webkit-scrollbar-button {
+	display: none;
+}
+
+#order-table {
+	color: #123;
+	margin: 0;
+	width: 100%;
+}
+tr td {
+	padding: 5px;
+	background: transparent;
+	font-size: 15px;
+}
+.order-list {
+	width: 100%;
+	padding: 0;
+	margin: 0;
+}
+.order-list td {
+	width: 100%;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+.order-list img{
+	max-width: 100%;
+	max-height: 70vh;
+	padding: 0;
+	display: block;
+	margin: 0 auto;
+	border-radius: 5px;
+	display: block;
+}
+.order-list h2{
+	margin: 20px auto;
+	display: flex;
+	justify-content: space-between;
+	flex-direction: column;
+	text-align: center;
+}
+tr td.cart-img img {
+	height: 70px;
+	width: 70px;
+	border-radius: 5px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, .5);
+}
+tr td.cart-nama {
+	width: 250px;
+	text-align: left;
+}
+td.cart-jumlah {
+	width: 55px;
+	line-height: 60px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px 3px;
+}
+td.cart-jumlah span {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	width: 20px;
+}
+td.cart-jumlah i {
+	font-size: 11px;
+	font-weight: bold;
+	cursor: pointer;
+}
+td.cart-harga {
+	text-align: right;
+	width: 130px;
+}
+td.cart-edit {
+	width: 50px;
+	text-align: center;
+}
+td.cart-edit i { 
+	background: transparent;
+	cursor: pointer;
+}
+td.cart-jumlah i {
+	position: relative;
+	cursor: pointer;
+}
+.cart-action {
+	position: relative;
+	display: flex;
+	color: #123;
+	padding: 10px;
+	height: 100px;
+}
