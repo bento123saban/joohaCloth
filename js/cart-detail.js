@@ -10,11 +10,7 @@ if (getID == null || getID == undefined) {
 	if (i > -1 && i < semuaProduk.length) {
 		let slide="", ukurans="", stock =""
 		console.info(semuaProduk[i].img[0])
-		if (semuaProduk[i].stok == 1) {
-			stock = "tersedia"
-		} else {
-			stock = "habis"
-		}
+		semuaProduk[i].stok == 1 ? stock = "tersedia" : stock = "habis"
 		for(let image in semuaProduk[i].img){
 			slide += `<img class="img" src="image/produk/${semuaProduk[i].img[image]}">`
 		}
@@ -149,6 +145,18 @@ function cartList() {
     }
     document.querySelector("#cart-table tbody").innerHTML = cartIndex
 }
+function totalSemua(){
+	let joohaCart = JSON.parse(localStorage.getItem("joohaCart"));
+	var totalHargaBayar = 0, totalItem = 0, totalProduk = 0;
+	joohaCart.map( data => {
+		totalHargaBayar += parseFloat(data.jumlah) * parseFloat(data.harga)
+		totalProduk += parseFloat(data.jumlah)
+		totalItem += 1
+	})
+	document.querySelector("#cart-count").innerHTML = totalProduk
+	document.querySelector("#tot-item").innerHTML = "Total Item : " + totalProduk
+	document.querySelector("#tot-harga").innerHTML = "Total Harga : Rp. " + totalHargaBayar
+}
 function loadCek(thisID) {
 	let params
 	JSON.parse(localStorage.getItem("joohaCart")).map( item => {
@@ -162,6 +170,7 @@ function loadCek(thisID) {
 					itemCount.innerHTML = item.jumlah
         		}
     		})
+			return
 		}
 	})
 	if (params !== 1) {
@@ -169,42 +178,32 @@ function loadCek(thisID) {
 		document.getElementsByClassName("total")[0].style.display = "none"
 	}
 }
-
 function addThisItem(el){
     let prodID = el.getAttribute("data-id")
     let n = semuaProduk.findIndex( x => x.ID == prodID)
-    if (n !== null ) {
-        let joohaCart = JSON.parse(localStorage.getItem("joohaCart"))
-        let index = 0, count = 1
-            if (joohaCart !== null) {
-                joohaCart.map(item => {
-                  if (item.ID == prodID) {
-                    index = 1
-                    item.jumlah = parseFloat(item.jumlah) + 1
-                    count = item.jumlah
-                    localStorage.setItem("joohaCart", JSON.stringify(joohaCart))
-                  }
-                })
-            }
-            if (index !== 1) {
-                let objek = {
-                    ID : prodID,
-                    jumlah : count,
-                    img : semuaProduk[n].img,
-                    nama : semuaProduk[n].nama,
-                    harga : semuaProduk[n].harga
-                }
-                joohaCart.push(objek)
-                localStorage.setItem("joohaCart", JSON.stringify(joohaCart))
-            }
-            cartList()
-			loadCek(prodID)
-    } else {
-        alert("Oopsss... Item tak ditemukan, halaman akan di-reload!")
-        window.location.reload()
-    }
+    n == null ? alert("Oopsss... Item tak ditemukan, halaman akan di-reload!") + window.location.reload() : ""
+	let joohaCart = JSON.parse(localStorage.getItem("joohaCart"))
+	let i = joohaCart.findIndex(index => index.ID == prodID)
+	let count = 1
+	if (i >= 0) {
+		joohaCart[i].jumlah =  parseFloat(joohaCart[i].jumlah) + 1
+		count = joohaCart[i].jumlah
+		localStorage.setItem("joohaCart", JSON.stringify(joohaCart))
+	} else {
+		let objek = {
+			ID : prodID,
+			jumlah : 1,
+			img : semuaProduk[n].img,
+			nama : semuaProduk[n].nama,
+			harga : semuaProduk[n].harga
+		}
+		joohaCart.push(objek)
+        localStorage.setItem("joohaCart", JSON.stringify(joohaCart))
+	}
+	cartList()
+	loadCek(prodID)
+	all()
 }
-
 function lessThisItem(el) {
 	let joohaCart = JSON.parse(localStorage.getItem("joohaCart"))
 	const prodID = el.getAttribute("data-id")
@@ -217,60 +216,55 @@ function lessThisItem(el) {
 	localStorage.setItem("joohaCart", JSON.stringify(joohaCart))
 	cartList()
 	loadCek(prodID)
+	all()
 }
 
 function addCart(el) {
 	let joohaCart = JSON.parse(localStorage.getItem("joohaCart"))
 	const thisID = el.parentElement.getAttribute("data-id")
-	joohaCart.map( item => {
-		if (item.ID == thisID) {
-			const thisHarga = parseFloat(item.harga)
-			const jumlah = parseFloat(item.jumlah) + 1
-			item.jumlah = jumlah
-			el.parentElement.children[1].innerHTML = jumlah
-			el.parentElement.parentElement.children[3].innerText = "Rp. " + jumlah * thisHarga
-			localStorage.setItem("joohaCart", JSON.stringify(joohaCart))
-			loadCek(thisID)
-		}
-	})
-	totalSemua()
+	let i = joohaCart.findIndex( index => index.ID == thisID)
+	i == -1 ? location.reload() : ""
+	const thisHarga = parseFloat(joohaCart[i].harga)
+	const jumlah = parseFloat(joohaCart[i].jumlah) + 1
+	joohaCart[i].jumlah = jumlah
+	localStorage.setItem("joohaCart", JSON.stringify(joohaCart))
+	loadCek(thisID)
+	cartList()
+	all()
 }
-
 function lessCart(el) {
 	let joohaCart = JSON.parse(localStorage.getItem("joohaCart"))
 	const thisID = el.parentElement.getAttribute("data-id")
-	for (let n = 0; n < joohaCart.length; n++) {
-		if (joohaCart[n].ID == thisID) {
-			let jumlah = parseFloat(joohaCart[n].jumlah) - 1
-			const thisHarga = parseFloat(joohaCart[n].harga)
-			if (jumlah == 0) {
-				joohaCart.splice(n, 1)
-				localStorage.setItem("joohaCart", JSON.stringify(joohaCart))
-				cartList()
-				loadCek(thisID)
-			} else {
-				const harga = jumlah * thisHarga
-				joohaCart[n].jumlah = jumlah
-				el.parentElement.children[1].innerHTML = jumlah
-				el.parentElement.parentElement.children[3].innerHTML = "Rp. " + harga
-				localStorage.setItem("joohaCart", JSON.stringify(joohaCart))
-        loadCek(thisID)
-			}
-		} 
+	let i = joohaCart.findIndex(index => index.ID == thisID)
+	i == -1 ? location.reload() : ""
+	let jumlah = parseFloat(joohaCart[i].jumlah) - 1
+	const thisHarga = parseFloat(joohaCart[i].harga)
+	if (jumlah == 0) {
+		joohaCart.splice(i, 1)
+		localStorage.setItem("joohaCart", JSON.stringify(joohaCart))
+		cartList()
+		loadCek(thisID)
+	} else {
+		const harga = jumlah * thisHarga
+		joohaCart[i].jumlah = jumlah
+		el.parentElement.children[1].innerHTML = jumlah
+		el.parentElement.parentElement.children[3].innerHTML = "Rp. " + harga
+		localStorage.setItem("joohaCart", JSON.stringify(joohaCart))
+		loadCek(thisID)
 	}
 	totalSemua()
+	all()
 }
 function cartDelete(el) {
 	const thisID = el.getAttribute("data-id")
 	let joohaCart = JSON.parse(localStorage.getItem("joohaCart"))
-	for (let n = 0; n < joohaCart.length; n++) {
-		if (joohaCart[n].ID == thisID) {
-			joohaCart.splice(n, 1)
-			localStorage.setItem("joohaCart", JSON.stringify(joohaCart))
-			cartList()
-		}
-	}
+	let i = joohaCart.findIndex( index => index.ID == thisID)
+	i == -1 ? location.reload() : ""
+	joohaCart.splice(i, 1)
+	localStorage.setItem("joohaCart", JSON.stringify(joohaCart))
+	cartList()
 	loadCek(thisID)
+	all()
 }
 function clearAll() {
 	localStorage.removeItem("joohaCart")
@@ -337,3 +331,13 @@ function slideThis() {
 	}, interval)
 }
 slideThis()
+
+function all() {
+	let price = 0
+	let count = 0
+	JSON.parse(localStorage.getItem("joohaCart")).map(item => {
+		price += parseFloat(item.jumlah) * parseFloat(item.harga)
+		count += parseFloat(item.jumlah)
+	})
+	console.info(price, count)
+}
