@@ -5,11 +5,7 @@ if (semuaProduk !== null) {
     let content = ""
     semuaProduk.map ( item => {
         let slide="", ukurans="", stock="";
-		if (item.stok == 1) {
-			stock = "Tersedia"
-		} else {
-			stock = "Habis"
-		}
+		item.stok == 1 ? stock = "Tersedia" : stock = "Habis"
 		item.img.map( image => {
 			slide += `<img class="img" src="image/produk/${image}">`
 		});
@@ -17,7 +13,6 @@ if (semuaProduk !== null) {
 			ukurans += `<span>${size}</span>.`
 		})
         let urls = `detail.html?id=${item.ID}`
-
         content += `
 			<div class="prod-card" data-nama="${item.nama}" data-tipe="${item.tipe}" data-size="${ukurans}">
 				<div class="prod-img pm0">
@@ -55,46 +50,14 @@ if (semuaProduk !== null) {
 const windowWidth = window.innerWidth
 const windowHeight = window.innerHeight
 
-// cart box control
-const cartBox = document.querySelector("#cartBox")
-
-const cartIcon = document.querySelector(".shopCartBox")
-cartIcon.onclick = function(){
-	if (cartBox.getBoundingClientRect().left >= windowWidth) {
-		cartBox.style.right = 0
-		document.getElementById("full-page").classList.toggle("cart")
-	} else {
-		cartBox.style.right = "-150%"
-		document.getElementById("full-page").classList.toggle("cart")
-	}
-}
-const cartClose = document.querySelector(".cart-close")
-cartClose.onclick = function(){
-	cartBox.style.right = "-150%"
-	document.getElementById("full-page").classList.toggle("cart")
-}
-const fullPage = document.querySelector("#full-page")
-fullPage.onclick = function() {
-	cartBox.style.right = "-150%"
-	document.getElementById("full-page").classList.toggle("cart")
-}
-
-
 // produk tab control
 const Cards = document.querySelectorAll(".prod-card")
 function search() {
 	const search = document.querySelector("#search").value.toUpperCase()
 	Cards.forEach((card) => {
 		let nama = card.getAttribute("data-nama").toUpperCase()
-		if( nama.indexOf(search) > -1 ) {
-			card.style.display = ""
-		} else {
-			card.style.display = "none"
-		}
+		nama.indexOf(search) > -1 ? card.style.display = "" : card.style.display = "none"
 	})
-}
-tabButton.onclick = function () {
-    document.getElementById("tabs-group").classList.toggle("hiddens")
 }
 function allProd() {
     Cards.forEach((card) => {
@@ -105,12 +68,8 @@ function tipeClick(el){
     let tipe = el.textContent.toUpperCase()
     Cards.forEach((card) => {
         let cardTipe = card.getAttribute("data-tipe").toUpperCase()
-        if(tipe == cardTipe){
-            card.style.display =""
-        } else {
-            card.style.display ="none"
-        }
-    });
+        tipe == cardTipe ? card.style.display = "" : card.style.display = "none"
+    })
 }
 const tabsGroups = document.querySelectorAll(".tabs-group label span")
 tabsGroups.forEach((span) => {
@@ -118,11 +77,7 @@ tabsGroups.forEach((span) => {
 		let tipe = span.textContent.toUpperCase();
 		Cards.forEach((card) => {
 			let cardTipe = card.getAttribute("data-tipe").toUpperCase()
-			if(tipe == cardTipe){
-				card.style.display =""
-			} else {
-				card.style.display ="none"
-			}
+      		tipe == cardTipe ? card.style.display = "" : card.style.display = "none"
 		})
 	}
 })
@@ -134,17 +89,10 @@ prodTipes.forEach((prodTipe) => {
 		Cards.forEach((card) => {
 			let cardTipe = card.getAttribute("data-tipe").toUpperCase()
 			let cardNama = card.getAttribute("data-nama").toUpperCase()
-			if(tipe == cardTipe && cardNama.indexOf(nama) > -1){
-				card.style.display =""
-			} else {
-				card.style.display ="none"
-			}
+			tipe == cardTipe && cardNama.indexOf(nama) > -1 ? card.style.display = "" : card.style.display = "none"
 		})
 	}
 })
-
-
-
 // cart box load
 if ( localStorage.getItem("joohaCart") == null || localStorage.getItem("joohaCart") == undefined) {
 	localStorage.setItem("joohaCart", JSON.stringify([]));
@@ -154,9 +102,7 @@ if ( localStorage.getItem("joohaCart") == null || localStorage.getItem("joohaCar
 	const itemsCount = document.querySelectorAll(".itemCount")
 	itemsCount.forEach((itemCount) => {
 		joohaCart.forEach( item => {
-			if (itemCount.getAttribute("data-id") == item.ID) {
-				itemCount.innerHTML = item.jumlah
-			}
+			itemCount.getAttribute("data-id") == item.ID ? itemCount.innerHTML = item.jumlah : ""
 		})
 	})
 }
@@ -197,118 +143,102 @@ function cartList() {
     }
     document.querySelector("#cart-table tbody").innerHTML = cartIndex
 }
-function totalSemua(){
-	let joohaCart = JSON.parse(localStorage.getItem("joohaCart"));
-	var totalHargaBayar = 0, totalItem = 0, totalProduk = 0;
-	joohaCart.map( data => {
-		totalHargaBayar += parseFloat(data.jumlah) * parseFloat(data.harga)
-		totalProduk += parseFloat(data.jumlah)
-		totalItem += 1
-	})
-	document.querySelector("#cart-count").innerHTML = totalProduk
-	document.querySelector("#tot-item").innerHTML = "Total Item : " + totalProduk
-	document.querySelector("#tot-harga").innerHTML = "Total Harga : Rp. " + totalHargaBayar
-}
+
+const itemsCount = document.querySelectorAll(".itemCount")
 function itemsCounter(thisCount, thisID) {
-    const itemsCount = document.querySelectorAll(".itemCount")
-    itemsCount.forEach((itemCount) => {
-        if (itemCount.getAttribute("data-id") == thisID) {
-            itemCount.innerHTML = thisCount
-        }
+    itemsCount.forEach( item => {
+		let match = item.getAttribute("data-id")
+        match == thisID ? item.innerHTML = thisCount : ""
     })
 }
 function addToCart(el){
     let prodID = el.getAttribute("data-id");
-    let i = semuaProduk.findIndex( x => x.ID == prodID)
-    if (i !== null ) {
-        let joohaCart = JSON.parse(localStorage.getItem("joohaCart"))
-        let index = 0, count = 1
-            if (joohaCart !== null) {
-                joohaCart.map(item => {
-                    if (item.ID == prodID) {
-                        index = 1
-                        item.jumlah = parseFloat(item.jumlah) + 1
-                        count = item.jumlah
-                        localStorage.setItem("joohaCart", JSON.stringify(joohaCart))
-                    }
-                })
-            }
-            if (index !== 1) {
-                let objek = {
-                    ID : prodID,
-                    jumlah : count,
-                    img : semuaProduk[i].img,
-                    nama : semuaProduk[i].nama,
-                    harga : semuaProduk[i].harga
-                }
-                joohaCart.push(objek)
-                localStorage.setItem("joohaCart", JSON.stringify(joohaCart))
-            }
-            cartList()
-            itemsCounter(count, prodID)
-    } else {
-        alert("Oopsss... Item tak ditemukan, halaman akan di-reload!")
-        window.location.reload()
-    }
+    let n = semuaProduk.findIndex( index => index.ID == prodID)
+	n == undefined ? alert("item not found !. Reload") + location.reload() : ""
+	let joohaCart = JSON.parse(localStorage.getItem("joohaCart"))
+	let i = joohaCart.findIndex(index => index.ID == prodID)
+	let count = 1
+	if (i >= 0) {
+		joohaCart[i].jumlah =  parseFloat(joohaCart[i].jumlah) + 1
+		count = joohaCart[i].jumlah
+		localStorage.setItem("joohaCart", JSON.stringify(joohaCart))
+	} else {
+		let objek = {
+			ID : prodID,
+			jumlah : 1,
+			img : semuaProduk[n].img,
+			nama : semuaProduk[n].nama,
+			harga : semuaProduk[n].harga
+		}
+		joohaCart.push(objek)
+    localStorage.setItem("joohaCart", JSON.stringify(joohaCart))
+	}
+	cartList()
+  itemsCounter(count, prodID)
+	all()
 }
 function addCart(el) {
-	let joohaCart = JSON.parse(localStorage.getItem("joohaCart"))
 	const thisID = el.parentElement.getAttribute("data-id")
-	joohaCart.map( item => {
+	let joohaCart = JSON.parse(localStorage.getItem("joohaCart"))
+	joohaCart.map(item => {
 		if (item.ID == thisID) {
 			const thisHarga = parseFloat(item.harga)
 			const jumlah = parseFloat(item.jumlah) + 1
 			item.jumlah = jumlah
-			el.parentElement.children[1].innerHTML = jumlah
-			el.parentElement.parentElement.children[3].innerText = "Rp. " + jumlah * thisHarga
 			localStorage.setItem("joohaCart", JSON.stringify(joohaCart))
 			itemsCounter(jumlah, thisID)
+	    cartList()
 		}
-	});
-	totalSemua();
+	})
 }
 function lessCart(el) {
-	let joohaCart = JSON.parse(localStorage.getItem("joohaCart"))
 	const thisID = el.parentElement.getAttribute("data-id")
-	for (let i = 0; i < joohaCart.length; i++) {
-		if (joohaCart[i].ID == thisID) {
-			const jumlah = parseFloat(joohaCart[i].jumlah) - 1
-			const thisHarga = parseFloat(joohaCart[i].harga)
+	let joohaCart = JSON.parse(localStorage.getItem("joohaCart"))
+	joohaCart.map((item, i) => {
+		if (item.ID == thisID) {
+			let jumlah = parseFloat(item.jumlah) - 1
+			let thisHarga = parseFloat(item.harga)
 			if (jumlah == 0) {
 				joohaCart.splice(i, 1)
-                itemsCounter("", thisID)
 				localStorage.setItem("joohaCart", JSON.stringify(joohaCart))
-				cartList()
+				itemsCounter("", thisID)
 			} else {
 				const harga = jumlah * thisHarga
-				joohaCart[i].jumlah = jumlah
-				el.parentElement.children[1].innerHTML = jumlah
-				el.parentElement.parentElement.children[3].innerHTML = "Rp. " + harga
+				item.jumlah = jumlah
 				localStorage.setItem("joohaCart", JSON.stringify(joohaCart))
-                itemsCounter(jumlah, thisID)
+				itemsCounter(jumlah, thisID)
 			}
-		} 
-	}
-	totalSemua()
+		}
+	})
+	cartList()
+	all()
 }
 function cartDelete(el) {
 	const thisID = el.getAttribute("data-id")
 	let joohaCart = JSON.parse(localStorage.getItem("joohaCart"))
-	for (let i = 0; i < joohaCart.length; i++) {
-		if (joohaCart[i].ID == thisID) {
-			joohaCart.splice(i, 1)
-			localStorage.setItem("joohaCart", JSON.stringify(joohaCart))
-			cartList()
-		}
-	}
-    itemsCounter("", thisID)
+	let i = joohaCart.findIndex(index => index.ID == thisID)
+	joohaCart.splice(i, 1)
+	localStorage.setItem("joohaCart", JSON.stringify(joohaCart))
+  itemsCounter("", thisID)
+	all()
+	cartList()
 }
 function clearAll() {
 	localStorage.removeItem("joohaCart")
 	localStorage.setItem("joohaCart", JSON.stringify([]))
+  const itemsCount = document.querySelectorAll(".itemCount")
+  itemsCount.forEach((itemCount) => {
+    itemCount.innerHTML = ""
+  })
 	cartList()
-    const itemsCount = document.querySelectorAll(".itemCount")
-    itemsCount.forEach((itemCount) => {
-        itemCount.innerHTML = ""
-    })
+	all()
+}
+function all() {
+	let price = 0
+	let count = 0
+	JSON.parse(localStorage.getItem("joohaCart")).map(item => {
+		price += parseFloat(item.jumlah) * parseFloat(item.harga)
+		count += parseFloat(item.jumlah)
+	})
+	console.info(price, count)
 }
