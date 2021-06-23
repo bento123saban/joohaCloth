@@ -1,0 +1,233 @@
+/* -------------------------------------- cart box -------------------------------------- */
+#full-page {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	opacity: 0;
+	z-index: -4;
+	backdrop-filter: blur(0px);
+	transition: all .3s ease-in-out;
+}
+#full-page.cart {
+	opacity: 1;
+	background: rgba(0, 0, 0, .5);
+	backdrop-filter: blur(1.5px);
+	z-index: 20;
+}
+.cart-box {
+	position: fixed;
+	width: min(500px, 100%);
+	margin: 0;
+	backdrop-filter: blur(8px);
+	color: var(--textColor2);
+	right: -150%;
+	top: 0;
+	z-index: 1000;
+	overflow: hidden;
+	transition: all .3s ease-in-out;
+	box-shadow: var(--boxShadow2);
+	font-weight: bold;
+	max-height: 100vh;
+}
+.cart-box .cart-head {
+	position: relative;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background: var(--bgColor1);
+	height: 35px;
+}
+.cart-box > .cart-head h3 {
+	color: var(--textColor2);
+	margin-left: 15px;
+	display: flex;
+	align-items: center;
+}
+.cart-box > .cart-head h3 i {
+	font-size: 15px;
+	color: var(--textColor2);
+}
+.cart-box > .cart-head i {
+	cursor: pointer;
+	margin: 0;
+	padding-right: 5px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 27px;
+	color: var(--textColor3);
+}
+.cart-content {
+	position: relative;
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+}
+.tabel-content {
+	overflow-y: scroll;
+	max-height: calc(100vh - 35px - 100px);
+	padding: 5px;
+}
+.tabel-content::-webkit-scrollbar {
+	width: 7px;
+	cursor: pointer;
+}
+.tabel-content::-webkit-scrollbar-track {
+	background: transparent;
+}
+.tabel-content::-webkit-scrollbar-thumb {
+	background: transparent;
+	border-radius: 100px;
+}
+.tabel-content:hover::-webkit-scrollbar-thumb {
+	background: var(--bgColor1);
+}
+.tabel-content::-webkit-scrollbar-button {
+	display: none;
+}
+
+
+
+
+
+/* cart box table */
+
+#card-table {
+	color: var(--textColor2);
+	width: 100%;
+	padding: 4px;
+}
+#card-table tbody {
+	padding: 3px;
+}
+tr td {
+	padding: 0;
+	text-align: left;
+	vertical-align: middle;
+}
+ tr td.img-cell {
+	width: 80px;
+}
+.cart-img {
+	height: 100%;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+}
+.cart-img img {
+	height: 100%;
+	width: 100%;
+	object-position: center;
+	object-fit: cover;
+	border-radius: 5px;
+}
+td.nama-cell {
+	position: relative;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0;
+}
+td.nama-cell a.cart-to-detail {
+	color: var(--textColor2);
+	text-decoration: underline;
+	margin: 0 15px;
+	padding: 0;
+}
+td.jumlah-cell {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	padding-left: 15px;
+	height: 40px;
+}
+td.jumlah-cell .item-kontrol{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	font-size: 13px;
+	width: 70px;
+}
+td.jumlah-cell .item-kontrol i {
+	cursor: pointer;
+	width: 20px;
+	height: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+td.jumlah-cell .cart-box-close {
+	color: var(--textColor4);
+	cursor: pointer;
+}
+
+
+
+.transparent {
+	color: transparent;
+	font-size: 5px;
+}
+
+
+
+.cart-action {
+	position: relative;
+	background: var(--bgColor1);
+	display: flex;
+	justify-content: space-between;
+	color: var(--textColor2);
+	padding: 10px;
+	height: 100px;
+}
+.cart-action .cart-ket {
+	text-align: left;
+	font-weight: initial;
+	margin-left: 5px;
+}
+.cart-action .cart-ket span {
+	display: block;
+	margin: 8px 0;
+}
+.cart-action .cart-ket .hapus-semua {
+	cursor: pointer;
+}
+.cart-action .check-out {
+	display: flex;
+	justify-content: flex-end;
+	align-items: flex-end;
+}
+.cart-action .check-out button {
+	padding: 7px 15px;
+	border-radius: 6px;
+	font-size: 17px;
+	font-weight: bold;
+}
+
+@media (max-width: 600px) {
+	/* -------------------------------------- cart box -------------------------------------- */
+	.cart-box {
+		font-weight: initial;
+	}
+	.tabel-content {
+		overflow-y: hidden;
+		max-height: none;
+		height: auto;
+	}
+	#card-table {
+		table-layout: fixed;
+		display: block;
+	}
+	#cart-table tbody tr td {
+		font-size: var(--textSize2);
+	}
+	.cart-action .cart-ket span {
+		font-size: var(--textSize2);
+	}
+	.cart-action .check-out button {
+		padding: 8px 20px;
+		font-size: 16px;
+	}
+}
