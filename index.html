@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-	<title>Jooha-Clothes</title>
+	<title>JOHA-SHOP</title>
 
 	<!-- meta -->
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
@@ -11,7 +11,7 @@
 	<!-- link -->
 	<link rel="stylesheet" href="css/index.css">
 	<link rel="stylesheet" href="css/responsive.css">
-	<!-- <link rel="stylesheet" href="fontawesome/css/all.css"> -->
+	<!-- <link rel="stylesheet" href="fontawesome/css/all.css">
 
 	<!-- script -->
 	<script src="https://kit.fontawesome.com/b9a9bf6e53.js" crossorigin="anonymous"></script>
@@ -20,25 +20,27 @@
 
 <body class="pm0" data-nama="home">
 
-<p class="text-banner">vero elementum ferri splendide</p>
+<!-- <p class="text-banner">vero elementum ferri splendide</p> -->
 <nav class="navbar">
 	<div class="nav-left">
 		<label for="check" class="checkbtn" id="checkbtn"><i class="fas fa-bars"></i>
 		</label>
 	</div>
-	<a id="nav-logo" href="#"><img src="" alt=""> Jooha-Clothes</a>
+	<a id="nav-logo" href="#"><img src="" alt="">JOHA-SHOP</a>
 	<input type="checkbox" id="check">
 	<ul id="nav-menu">
   		<li class="nav-list"><a class="nav-list-link promo active" href="#">Promo</a></li>
+  		<li class="nav-list"><a class="nav-list-link tips" href="#tips">Tips</a></li>
   		<li class="nav-list"><a class="nav-list-link produk" href="#produk">Produk</a></li>
   		<li class="nav-list"><a class="nav-list-link kontak" href="#kontak">Kontak</a></li>
 		<li class="nav-page">
-			<a class="nav-page-link" href="about_us.html">Tentang Kami</a>
-			<a class="nav-page-link" href="kebijakan.html">Kebijakan</a>
+			<a class="nav-page-link" href="tentang_kami.html" title="Tentang Kami"><i class="fas fa-user-circle"></i></a>
+			<a class="nav-page-link" href="persyaratan_layanan.html" title="Persyaratan Layanan"><i class="fas fa-question-circle"></i></a>
 		</li>
-  		<li class="nav-close" onclick="navClose()"><i class="fas fa-times-circle"></i></li>
+  		<li class="nav-close"><i class="fas fa-times-circle"></i></li>
 	</ul>
 	<div class="nav-fitur">
+		<label for="search"><i class="fas fa-search"></i></label> .. 
 		<i class="fas fa-cart-arrow-down shopCartBox"><span id="cart-count" class="count"></span></i>
 	</div>
 </nav>
@@ -51,7 +53,7 @@
 	</div>
 	<div class="cart-content">
 		<div class="tabel-content">
-			<table id="cart-table">
+			<table id="cart-table" width="100%">
 				<tbody>
 					<!-- cart item content -->
 				</tbody>
@@ -61,7 +63,7 @@
 			<div class="cart-ket">
 				<span class="tot-harga" id="tot-harga"></span>
 				<span class="tot-item" id="tot-item"></span>
-				<span title="Hapus Semua" onclick="clearAll()" class="hapus-semua" id="hapus-semua"><i class="fas fa-trash"></i> - Hapus</span>
+				<span title="Hapus Semua" class="hapus-semua" id="hapus-semua"><i class="fas fa-trash"></i> - Hapus</span>
 			</div>
 			<div class="check-out">
 				<button class="check-out-button" onclick="location.replace('order.html?q=all')">Check Out &nbsp <i class="fas fa-angle-double-right"></i></button>
@@ -69,6 +71,7 @@
 		</div>
 	</div>
 </div>
+
 
 <header id="header" class="pm0">
 	<section id="promo" class="promo"></section>
@@ -122,70 +125,164 @@
  		</div><!-- slide 4 -->
 
 		<div class="navigasi">
-			<span class="slTombol slideOn">Promo One</span>
-			<span class="slTombol">Special Event</span>
-			<span class="slTombol">Promo Two</span>
-			<span class="slTombol">Special Event</span>
+			<span class="slTombol slideOn">Promo Satu</span>
+			<span class="slTombol">Promo Dua</span>
+			<span class="slTombol">Promo Tiga</span>
+			<span class="slTombol">Promo Empat</span>
 		</div>
 
 	</div><!-- slide show -->
 </header>
 
 
+<section class="tips" id="tips">
+	<div class="carousel carou1">
+		<div class="slide-group active">
+			<img src="image/produk/celana_celana01.jpg" alt="" class="slide-img img">
+			<div class="slide-text active">
+				<h3>Lorem Ipsum</h3>
+				<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ad, quidem.</p>
+			</div>
+		</div>
+		<div class="slide-group">
+			<img src="image/produk/celana_celana02.jpg" alt="" class="slide-img img">
+			<div class="slide-text">
+				<h3>Lorem Ipsum</h3>
+				<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ad, quidem.</p>
+			</div>
+		</div>
+		<div class="slide-group">
+			<img src="image/produk/celana_celana03.jpg" alt="" class="slide-img img">
+			<div class="slide-text">
+				<h3>Lorem Ipsum</h3>
+				<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ad, quidem.</p>
+			</div>
+		</div>
+		<div class="button-indic">
+			<span class="slide-button-indic active"></span>
+			<span class="slide-button-indic"></span>
+			<span class="slide-button-indic"></span>
+		</div>
+		<i class="button-left fas fa-chevron-left"></i>
+		<i class="button-right fas fa-chevron-right"></i>
+	</div>
+
+	<div class="carousel carou2">
+		<div class="slide-group active">
+			<img src="image/produk/celana_baju01.jpg" alt="" class="slide-img img">
+			<div class="slide-text active">
+				<h3>Lorem Ipsum</h3>
+				<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ad, quidem.</p>
+			</div>
+		</div>
+		<div class="slide-group">
+			<img src="image/produk/celana_baju02.jpg" alt="" class="slide-img img">
+			<div class="slide-text">
+				<h3>Lorem Ipsum</h3>
+				<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ad, quidem.</p>
+			</div>
+		</div>
+		<div class="slide-group">
+			<img src="image/produk/celana_baju03.jpg" alt="" class="slide-img img">
+			<div class="slide-text">
+				<h3>Lorem Ipsum</h3>
+				<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ad, quidem.</p>
+			</div>
+		</div>
+		<div class="button-indic">
+			<span class="slide-button-indic active"></span>
+			<span class="slide-button-indic"></span>
+			<span class="slide-button-indic"></span>
+		</div>
+		<i class="button-left fas fa-chevron-left"></i>
+		<i class="button-right fas fa-chevron-right"></i>
+	</div>
+</section>
+
+
 
 <section class="produk pm0" id="produk">
-	<h1>PRODUK KAMI</h1>
 	<div class="produk-box">
+	<h1 class="header">PRODUK KAMI</h1>
 		<div class="produk-headings">
 			<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Similique vel harum consequatur quod temporibus autem perferendis nesciunt optio hic est!</p>
 		</div><!-- produk headings -->
 		
 		<div class="produk-kontrol">
 			<div class="produk-search">
-				<input onkeyup="search()" name="search" type="text" id="search" placeholder="Temukan yang kamu cari..">
+				<input name="search" type="text" id="search" placeholder="Cari . . .">
 				<i class="fas fa-search"></i>
 			</div>
 			<div class="produk-tabs">
-				<div class="tabs-button">
-					<button class="tabs-prod-button" onclick="allProd()">Semua</button>
-					<button class="tabs-prod-button" id="tabsButton"><i class="fas fa-play" ></i></button> 
-				</div>
 				<div class="tabs-group" id="tabs-group">
-					<label><span>Jaket</span><i class="fas fa-play tabsClickButton"></i>
-						<div class="tabs-child">
-							<li class="prodTipe">Tipe A</li>
-							<li class="prodTipe">Tipe B</li>
-							<li class="prodTipe">Tipe C</li>
-							<li class="prodTipe">Tipe D</li>
-						</div>
-					</label>
-					<label><span>T-shirt</span><i class="fas fa-play tabsClickButton"></i>
-						<div class="tabs-child">
-							<li class="prodTipe">Tipe E</li>
-							<li class="prodTipe">Tipe F</li>
-							<li class="prodTipe">Tipe G</li>
-							<li class="prodTipe">Tipe H</li>
-						</div>
-					</label>
-					<label><span>Kemeja</span><i class="fas fa-play tabsClickButton"></i>
-						<div class="tabs-child">
-							<li class="prodTipe">Tipe I</li>
-							<li class="prodTipe">Tipe J</li>
-							<li class="prodTipe">Tipe K</li>
-							<li class="prodTipe">Tipe L</li>
-						</div>
-					</label>
-					<label><span>Blus</span><i class="fas fa-play tabsClickButton"></i>
-						<div class="tabs-child">
-							<li class="prodTipe">Tipe M</li>
-							<li class="prodTipe">Tipe N</li>
-							<li class="prodTipe">Tipe O</li>
-							<li class="prodTipe">Tipe P</li>
-						</div>
-					</label>
+					<div class="prod-menu" data-jenis="cosmetics-list">
+						<i class="menu-arrow fas fa-chevron-right" data-jenis="cosmetics-list"></i>
+						<span class="prod-menu-name" data-jenis="cosmetics-list">Cosmetics</span>
+						<ul class="prod-menu-ul cosmetics-list" data-jenis="cosmetics-list">
+							<li class="prod-menu-list">Concelear</li>
+							<li class="prod-menu-list">Primer</li>
+							<li class="prod-menu-list">Foundation</li>
+							<li class="prod-menu-list"><i class="sub-arrow fas fa-chevron-circle-right" data-sub="powder"></i>Powder</li>
+							<ul class="sub-menu" data-sub="powder">
+								<li class="sub-menu-list">Loose Powder</li>
+								<li class="sub-menu-list">Compact Powder</li>
+							</ul>
+							<li class="prod-menu-list"><i class="sub-arrow fas fa-chevron-circle-right" data-sub="eye"></i>Eye Cosmetics</li>
+							<ul class="sub-menu" data-sub="eye">
+								<li class="sub-menu-list">Eye Shadow</li>
+								<li class="sub-menu-list">Eye Brow</li>
+								<li class="sub-menu-list">Eye Liner</li>
+							</ul>
+							<li class="prod-menu-list">Maskara</li>
+							<li class="prod-menu-list"><i class="sub-arrow fas fa-chevron-circle-right" data-sub="lips"></i>Lips Cosmetics</li>
+							<ul class="sub-menu" data-sub="lips">
+								<li class="sub-menu-list">Lip Cream</li>
+								<li class="sub-menu-list">Lipstick</li>
+								<li class="sub-menu-list">Lipgloss</li>
+								<li class="sub-menu-list">Lip Matte</li>
+							</ul>
+							<li class="prod-menu-list">Blush</li>
+						</ul>
+					</div>
+					<div class="prod-menu">
+						<i class="menu-arrow fas fa-chevron-right" data-jenis="skinCare-list"></i>
+						<span class="prod-menu-name" data-jenis="skinCare-list">Skin Care</span>
+						<ul class="prod-menu-ul skinCare-list" data-jenis="skinCare-list">
+							<li class="prod-menu-list">Cleanser</li>
+							<li class="prod-menu-list">Face Mask</li>
+							<li class="prod-menu-list">Toner</li>
+							<li class="prod-menu-list">Serum</li>
+							<li class="prod-menu-list">Eye Cream</li>
+							<li class="prod-menu-list">Mouisturizer</li>
+							<li class="prod-menu-list">Sunscreen</li>
+						</ul>
+					</div>
+					<div class="prod-menu">
+						<i class="menu-arrow fas fa-chevron-right" data-jenis="style-list"></i>
+						<span class="prod-menu-name" data-jenis="style-list">Style</span>
+						<ul class="prod-menu-ul style-list" data-jenis="style-list">
+							<li class="prod-menu-list">Hoodie</li>
+							<li class="prod-menu-list">Jogger</li>
+							<li class="prod-menu-list">Kemeja</li>
+							<li class="prod-menu-list">Sweatshirt</li>
+							<li class="prod-menu-list">T-shirt</li>
+							<li class="prod-menu-list">Oversized</li>
+						</ul>
+					</div>
+					<div class="prod-menu">
+						<i class="menu-arrow fas fa-chevron-right" data-jenis="jewelry-list"></i>
+						<span class="prod-menu-name" data-jenis="jewelry-list">Jewelry</span>
+						<ul class="prod-menu-ul jewelry-list" data-jenis="jewelry-list">
+							<li class="prod-menu-list">Cincin</li>
+							<li class="prod-menu-list">Kalung</li>
+							<li class="prod-menu-list">Anting</li>
+							<li class="prod-menu-list">Gelang</li>
+						</ul>
+					</div>
 				</div>
 			</div>
 		</div> <!-- produk kontrol -->
+
 		<div id="prodKontent" class="produk-content">
 			<!-- konten in save -->
 		</div><!-- produk content -->
@@ -199,29 +296,46 @@
 <section class="kontak pm0" id="kontak">
 	<div class="kontak-box">
 		<div class="kontak-head">
-			<h1>KONTAK</h1>
+			<h1 class="header">KONTAK</h1>
 			<p class="kontak-text">	Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque rem, asperiores, explicabo cupiditate possimus magni est unde quaerat maiores dolor repellendus dicta, consequuntur similique mollitia natus aliquid tempora odio sint!, ipsum dolor sit amet consectetur adipisicing elit.</p>
 		</div> <!-- kontak head -->
 		<div class="kontak-list">
 			<div class="kontak-numbar"> 
 				<button class="numbar-list wa">
-					<a href="#kontak" class="numbar-link wa"><img src="image/png/11.svg"> WhatsApp Num</a></button>
+					<a href="https://api.whatsapp.com/send?phone=6281354741823&text=Hai%20admin%20Jooha-Shop.%A0" class="numbar-link wa"><img src="image/png/11.svg">0822-3927-2644</a></button>
 				<button class="numbar-list ig">
-					<a href="#kontak" class="numbar-link ig"><img src="image/png/13.svg"> @Instagram</a></button>
+					<a href="https://instagram.com/bdrsproject?utm_medium=copy_link" class="numbar-link ig"><img src="image/png/13.svg"> bdrsproject</a></button>
 				<button class="numbar-list facebook">
 					<a href="#kontak" class="numbar-link facebook"><img src="image/png/facebook.svg"> Halaman FB</a></button>
 			</div>
 			<div class="kontak-label">
 				<label class="phone">
-					<a class="phone-link"><i class="fas fa-phone"></i><span>+62813-5474-1823 </span></a></label>
+					<a class="phone-link"><i class="fas fa-phone"></i><span>0822-3927-2644 </span></a></label>
 				<label class="email">
-					<a class="email-link"><i class="fas fa-envelope"></i><span>JoohaClothes@gmail.com</span></a></label>
+					<a class="email-link"><i class="fas fa-envelope"></i><span>JoohaShop@gmail.com</span></a></label>
 				<label class="address">
-					<a class="address-link"><i class="fas fa-map-marker-alt"></i><span>Lorem St. No 13. Ambon City, Indonesia 97233</span></a></label>
+					<a class="address-link"><i class="fas fa-map-marker-alt"></i><span>Lateri II. No 13. Ambon, Maluku, Indonesia 97231</span></a></label>
 			</div>
-			<div class="maps dis-none">
+			<div class="maps">
 				<div class="maps-box">
-
+					<div id="wrapper-9cd199b9cc5410cd3b1ad21cab2e54d3">
+						<div id="map-9cd199b9cc5410cd3b1ad21cab2e54d3"></div>
+						<script>
+							(function () {
+								var setting = {"height":260,"width":362,"zoom":17,"queryString":"TOISAPU GUEST HOUSE, Jalan Dokter Wem Tehupeiory, Hutumuri, South Leitimur, Kota Ambon, Maluku, Indonesia","place_id":"ChIJx4ZqDHXrbC0RBz1Hw6ZLH34","satellite":false,"centerCoord":[-3.6508294200928635,128.28215503712948],"cid":"0x7e1f4ba6c3473d07","lang":"en","cityUrl":"/indonesia/ambon-36487","cityAnchorText":"Map of Ambon, Indonesia","id":"map-9cd199b9cc5410cd3b1ad21cab2e54d3","embed_id":"530999"};
+								var d = document;
+								var s = d.createElement('script');
+								s.src = 'https://1map.com/js/script-for-user.js?embed_id=530999';
+								s.async = true;
+								s.onload = function (e) {
+									window.OneMap.initMap(setting)
+								};
+								var to = d.getElementsByTagName('script')[0];
+								to.parentNode.insertBefore(s, to);
+							})();
+						</script>
+						<a href="https://1map.com/map-embed"></a>
+					</div>
 				</div>
 			</div>
 		</div> <!-- kontak list -->
@@ -234,19 +348,19 @@
 <section class="footer">
 	<div class="footer-box">
 		<div class="footer-content">
-			<h4>About Us</h4>
-			<p class="about-text">	Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui saepe eaque temporibus expedita in molestiae asperiores possimus incidunt similique? Ipsum Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eos, rem cum.</p>
+			<h4>Tentang Kami</h4>
+			<p class="about-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui saepe eaque temporibus expedita in molestiae asperiores possimus incidunt similique? Ipsum Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eos, rem cum.</p>
 		</div>
 		<div class="footer-content">
-			<h4>Content-Type</h4>
-			<p class="about-text">	Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui saepe eaque temporibus expedita in molestiae asperiores possimus incidunt similique? Ipsum Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+			<h4>Konten Tambahan</h4>
+			<p class="about-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui saepe eaque temporibus expedita in molestiae asperiores possimus incidunt similique? Ipsum Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
 		</div>
 		<div class="footer-content">
-			<h4>Open Hours</h4>
+			<h4>Waktu Buka</h4>
 			<ul>
-				<li><p>Open Every Day, <br>
-					From 07.00 AM - 11.00 PM, <br>
-					Except Sunday.</p>
+				<li><p>Buka setiap hari, <br>
+					Dari 07.00 AM - 11.00 PM, <br>
+					Kecuali hari Minggu.</p>
 				</li>
 			</ul>
 		</div>
@@ -257,16 +371,57 @@
 	</div>
 </section>
 
+<a href="#" class="to-top"><i class="fas fa-paper-plane"></i></a>
+
 <footer class="pm0">
-	<p class="pm0">Didesain dengan Kasih, atas ikatan persahabatan. By bendhard16</p>
+	<p class="pm0">Copyright JOHA-SHOP 2021. Design by @bendhard16</p>
 </footer>
 
 <!-- JS File -->
-<script src="js/index.js"></script>
 <script src="js/cart-home.js"></script>
+<script src="js/promo-data.js"></script>
 <script src="js/slide-home.js"></script>
+<script src="js/index.js"></script>
 
 <!-- script -->
+<script>
+	if (window.innerWidth <= 768) {
+		screen.orientation.lock("portrait");
+	} else {
+		screen.orientation.lock("natural");
+	}
+</script>
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
