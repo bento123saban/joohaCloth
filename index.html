@@ -318,7 +318,7 @@
 			</div>
 			<div class="maps">
 				<div class="maps-box">
-					<div id="wrapper-9cd199b9cc5410cd3b1ad21cab2e54d3">
+					<div id="wrapper-9cd199b9cc5410cd3b1ad21cab2e54d3" class="maps-link">
 		<div id="map-9cd199b9cc5410cd3b1ad21cab2e54d3"></div><script>(function () {
         var setting = {"height":260,"width":362,"zoom":18,"queryString":"JOHA AMBON STUDIO, Lateri, Kota Ambon, Maluku, Indonesia","place_id":"ChIJyXhz-FXtbC0RmykPrqR883U","satellite":false,"centerCoord":[-3.640111151010226,128.24455335],"cid":"0x75f37ca4ae0f299b","lang":"en","cityUrl":"/indonesia/ambon-36487","cityAnchorText":"Map of Ambon, Indonesia","id":"map-9cd199b9cc5410cd3b1ad21cab2e54d3","embed_id":"531875"};
         var d = document;
@@ -385,6 +385,10 @@
 	} else {
 		screen.orientation.lock("natural");
 	}
+
+document.querySelector(".maps-link").onclick = function(){
+Location.replace("https://maps.app.goo.gl/WvTCiFmDrYsqGFJU7");
+}
 </script>
 
 </body>
