@@ -1,0 +1,134 @@
+
+/* -------------------------------------- navbar -------------------------------------- */
+nav.navbar {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 5px 10px;
+	position: sticky;
+	top: 0;
+	z-index: 1000;
+	background: var(--bgColor2);
+	box-shadow: var(--boxShadow2);
+	text-transform: uppercase;
+	height: 50px;
+}
+.nav-left, #check, #checkbtn {
+	display: none;
+}
+#checkbtn {
+	cursor: pointer;
+}
+.navbar #nav-logo {
+	color: var(--textColor1);
+	font-weight: bold;
+	text-transform: uppercase;
+}
+.navbar #nav-menu {
+	display: flex;
+	align-items: center;
+	margin: 0 10px;
+	padding: 0;
+}
+.navbar #nav-menu li.nav-list {
+	position: relative;
+	margin: 0 10px;
+}
+.navbar #nav-menu li.nav-list a.nav-list-link {
+	color: var(--textColor1);
+	position: relative;
+	transition: all .4s ease-in-out;
+	padding: 6px 15px;
+	background: transparent;
+	border-radius: var(--borRad5);
+}
+.navbar #nav-menu li.nav-list a.active{
+	background: var(--bgColor1);
+	color: var(--textColor2);
+	box-shadow: var(--boxShadow1);
+	font-size: var(--textHover);
+	font-weight: bold;
+	transition: all .4s ease-in-out;
+}
+.navbar #nav-menu li.nav-list .nav-list-link:hover {
+	background: var(--bgColor1);
+	color: var(--textColor2);
+	box-shadow: var(--boxShadow1);
+	font-size: var(--textHover);
+	transition: all .4s ease-in-out;
+}
+.navbar #nav-menu li.nav-page {
+	display: flex;
+	align-items: center;
+	margin-left: 50px;
+}
+.navbar #nav-menu li.nav-page a {
+	display: block;
+	padding: 2px 7px;
+	color: var(--textColor1);
+	margin: 5px;
+	font-size: 18px;
+}
+.nav-close {
+	display: none;
+	cursor: pointer;
+}
+.navbar .nav-fitur {
+	position: relative;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: auto;
+}
+.navbar .nav-fitur label {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 0;
+}
+.navbar .nav-fitur i {
+	cursor: pointer;
+	margin: 0 10px;
+}
+.navbar .nav-fitur i span {
+	position: relative;
+	color: var(--textColor1);
+    font-size: var(--textSize1);
+	margin: 0 5px;
+}
+.navbar .nav-fitur i span::before {
+	content: '';
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	background: var(--bgColor1);
+	opacity: 1;
+	width: 0;
+	height: 0;
+	animation: shopcart 3s ease-in-out 5s infinite;
+	border-radius: 100%;
+	z-index: -1;
+} 
+@keyframes shopCart {
+	100% {
+		width: 30px;
+		height: 30px;
+		opacity: 0;
+	}
+}
+
+
+.navbar a.to-home {
+	color: var(--textColor1);
+}
+.navbar a.to-home i{
+	color: var(--textColor1);
+}
+.nav-edit {
+	margin-bottom: 15px;
+	border-radius: 0 0 5px 5px;
+}
+.nav-edit i{
+	color: var(--textColor1);
+}
