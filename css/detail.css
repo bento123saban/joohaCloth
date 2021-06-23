@@ -1,152 +1,37 @@
-/* -------------------------------------- ROOT -------------------------------------- */
-:root {
-	--pmColor : black;
-	--scnColor : white;
-	--thirdColor : green;
-	--tsSlider : ;
-	--tsSliderWidth: ;
-}
 
 
+@import url('cart-table.css');
+@import url('navbar.css');
+@import url('root_and_set.css');
 
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond&display=swap');
 
-/* -------------------------------------- MAIN -------------------------------------- */
-html {
-	scroll-behavior: smooth;
-}
 * {
-	box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: 'Cormorant Garamond', serif;
 }
 
 body {
-	height: 100vh;
-}
-
-
-
-
-/* -------------------------------------- special tag -------------------------------------- */
-button {
-	cursor: pointer;
-}
-input {
-	outline: none !important;
-}
-button {
-	cursor: pointer;
-	outline: none !important;
-}
-a, li {
-	list-style: none;
-	text-decoration: none !important;
-}
-
-a {
-	cursor: pointer;
-}
-
-
-
-/* -------------------------------------- special Class -------------------------------------- */
-.pm0 {
 	margin: 0;
 	padding: 0;
 }
-img.img {
-	height: 100%;
-	width: 100%;
-	object-fit: cover;
-	object-position: center center;
-	margin: 0;
-	padding: 0;
-}
-
-
-
-
-
-body {
-	margin: 0;
-	padding: 0;
-}
-
-/* -------------------------------------- navbar -------------------------------------- */
-nav.navbar {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 10px;
-	position: fixed;
-	width: 100%;
-	top: 0;
-	z-index: 1000;
-	background: white;
-}
-.navbar #nav-logo {
-	color: #123;
-	font-weight: bold;
-	text-transform: uppercase;
-}
-.navbar h3 {
-	text-transform: uppercase;
-	margin: 2px;
-	padding: 0;
-}
-.navbar .nav-fitur {
-	position: relative;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-}
-.navbar .nav-fitur i {
-	cursor: pointer;
-}
-.navbar .nav-fitur i span {
-	position: relative;
-	font-size: 15px;
-	color: black;
-	margin: 0 5px;
-}
-.navbar .nav-fitur i span::before {
-	content: '';
-	position: absolute;
-	left: 50%;
-	top: 50%;
-	transform: translate(-50%, -50%);
-	background: black;
-	opacity: 1;
-	width: 0;
-	height: 0;
-	animation: shopcart 3s ease-in-out 5s infinite;
-	border-radius: 100%;
-	z-index: -1;
-} 
-@keyframes shopCart {
-	100% {
-		width: 30px;
-		height: 30px;
-		opacity: 0;
-	}
-}
-
-
-
 
 
 /* --------------------------------------- main catalog --------------------------------------- */
 .main-catalog {
 	width: 100%;
 	overflow: hidden;
-	background: black;
+	background: var(--bgColor1);
 }
 .catalog {
 	position: relative;
 	display: flex;
 	justify-content: center;
 	align-items: flex-start;
-	background: black;
-	color: white;
-	padding: 80px 60px 60px;
+	background: var(--bgColor1);
+	color: var(--textColor2);
+	padding: 40px 60px 60px;
 }
 .cata-box {
 	display: flex;
@@ -157,6 +42,7 @@ nav.navbar {
 	position: relative;
 	flex: 1;
 	margin-right: 25px;
+	max-height: 80vh;
 }
 .cata-slide {
 	position: relative;
@@ -172,14 +58,10 @@ nav.navbar {
 .cata-slide img.onSlide {
 	clip-path: circle(130% at 50% 100%);
 	transition: all 1.5s ease-in-out;
-	animation: zoom 10s linear;
+	animation: zoom 10s linear forwards;
 }
 @keyframes zoom {
-	75%{
-		opacity: 1;
-	}
-	100% {
-		opacity: 0;
+	to {
 		transform: scale(1.1);
 	}
 }
@@ -192,22 +74,21 @@ nav.navbar {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	z-index: 10000;
+	z-index: 10;
 }
 .cata-slide .cata-slide-btn span{
-	background-color: white;
+	background-color: var(--bgColor2);
 	height: 10px;
 	width: 10px;
 	border-radius: 100%;
 	margin: 2px 5px;
 	cursor: pointer;
-	/* transition: all .4s ease-in-out; */
 }
 .cata-slide .cata-slide-btn span.onSlide{
-	background-color: black;
+	background-color: var(--bgColor1);
 	height: 12px;
 	width: 12px;
-	box-shadow: 0 5px 10px rgba(0, 0, 0, .5);
+	box-shadow: var(--boxShadow1);
 	transition: all .4s ease-in-out;
 	border: 1px solid white;
 }
@@ -223,7 +104,7 @@ nav.navbar {
 	justify-content: space-between;
 	padding: 0 5px;
 	margin: 0 0 25px;
-	color: white;
+	color: var(--textColor2);
 }
 .cata-right h2 span {
 	max-width: 50%;
@@ -235,7 +116,6 @@ nav.navbar {
 #ukuran {
 	display: flex;
 	align-items: center;
-	font-size: 15px;
 }
 #ukuran span {
 	display: flex;
@@ -254,21 +134,20 @@ nav.navbar {
 	justify-content: center;
 }
 .cata-right .prod-detail .cart button {
-	background: black;
-	color: white;
-	border-color: blanchedalmond;
+	background: var(--bgColor1);
+	color: var(--textColor2);
+	border-color: var(--textColor2);
 	display: block;
 }
 .cata-right .prod-detail .cart .jumlah {
-	background: white;
+	background: var(--bgColor2);
 	border: 2px solid gray;
 	display: none;
-	color: black;
+	color: var(--textColor1);
 }
 .cata-right .prod-detail .cart button, .cata-right .prod-detail .cart .jumlah {
 	border-radius: 5px;
 	padding: 7px 20px;
-	font-size: 16px;
 	margin: 0 5px;
 	font-weight: bold;
 }
@@ -281,7 +160,12 @@ nav.navbar {
 	width: 100%;
 	text-align: center;
 	display: none;
-	color: white;
+	color: var(--textColor2);
+}
+.cata-right .prod-detail p.detail-warning {
+	text-align: center;
+	font-size: var(--textSize1);
+	color: var(--textColor2);
 }
 .cata-right .prod-detail a.order-one {
 	padding: 0;
@@ -292,203 +176,26 @@ nav.navbar {
 	display: block;
 	font-size: 12px;
 	text-decoration: underline !important;
-	color: white;
+	color: var(--textColor2);
 }
 .cata-right .deskripsi {
 	position: relative;
-	color: white;
+	color: var(--textColor2);
 }
 .cata-right .deskripsi p{
 	text-align: justify;
 	text-indent: 30px;
-	font-size: 14px;
+	font-size: var(--textSize1);
 }
 
 
 
 
-/* -------------------------------------- cart box -------------------------------------- */
-#full-page {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100vw;
-	height: 100vh;
-	opacity: 0;
-	z-index: -4;
-	background: rgba(0, 0, 0, 0);
-	backdrop-filter: blur(0px);
-	transition: all .3s ease-in-out;
-}
-#full-page.cart {
-	opacity: 1;
-	background: rgba(0, 0, 0, .5);
-	backdrop-filter: blur(1.5px);
-	z-index: 20;
-}
-.cart-box {
-	position: fixed;
-	width: 500px;
-	/* height: 550px; */
-	margin: 0;
-	backdrop-filter: blur(8px);
-	color: white;
-	right: -150%;
-	top: 0;
-	z-index: 1000;
-	overflow: hidden;
-	transition: all .3s ease-in-out;
-	box-shadow: 0 4px 14px rgba(0, 0, 0, .5);
-	font-weight: bold;
-	max-height: 100vh;
-}
-.cart-box .cart-head {
-	position: relative;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	background: black;
-	height: 35px;
-}
-.cart-box > .cart-head h3 {
-	color: white;
-	margin-left: 15px;
-	display: flex;
-	align-items: center;
-}
-.cart-box > .cart-head h3 i {
-	font-size: 15px;
-	color: white;
-}
-.cart-box > .cart-head i {
-	cursor: pointer;
-	margin: 0;
-	padding-right: 5px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	font-size: 27px;
-	color: yellow;
-}
-.cart-content {
-	position: relative;
-	margin: 0;
-	display: flex;
-	flex-direction: column;
-}
-.tabel-content {
-	overflow-y: scroll;
-	max-height: calc(100vh - 35px - 100px);
-}
-.tabel-content::-webkit-scrollbar {
-	width: 7px;
-	cursor: pointer;
-}
-.tabel-content::-webkit-scrollbar-track {
-	background: transparent;
-}
-.tabel-content::-webkit-scrollbar-thumb {
-	background: transparent;
-	border-radius: 100px;
-}
-.tabel-content:hover::-webkit-scrollbar-thumb {
-	background: black;
-}
-.tabel-content::-webkit-scrollbar-button {
-	display: none;
-}
-#card-table {
-	color: white;
-}
-tr td {
-	padding: 5px;
-	background: transparent;
-}
-tr td.cart-img img {
-	height: 70px;
-	width: 70px;
-	border-radius: 5px;
-	box-shadow: 0 2px 5px rgba(0, 0, 0, .5);
-}
-tr td.cart-nama {
-	width: 200px;
-	text-align: left;
-	font-size: 17px;
-}
-tr td.cart-nama a {
-	color: white;
-}
-td.cart-jumlah {
-	width: 55px;
-	line-height: 60px;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 10px 3px;
-}
-td.cart-jumlah span {
-	position: relative;
-	display: flex;
-	justify-content: center;
-	width: 20px;
-}
-td.cart-jumlah i {
-	font-size: 11px;
-	font-weight: bold;
-	cursor: pointer;
-}
-td.cart-harga {
-	text-align: right;
-	width: 100px;
-}
-td.cart-edit {
-	width: 50px;
-	text-align: center;
-}
-td.cart-edit i {
-	background: transparent;
-	cursor: pointer;
-}
-td.cart-jumlah i {
-	position: relative;
-	cursor: pointer;
-}
-.cart-action {
-	position: relative;
-	background: black;
-	display: flex;
-	color: white;
-	padding: 10px;
-	height: 100px;
-}
-.cart-action .cart-ket {
-	flex: 1.5;
-	text-align: left;
-	font-weight: initial;
-	margin-left: 5px;
-}
-.cart-action .cart-ket span {
-	display: block;
-	margin: 8px 0;
-}
-.cart-action .cart-ket .tot-harga {
-	font-size: 20px;
-}
-.cart-action .cart-ket .hapus-semua {
-	cursor: pointer;
-	font-size: 12px;
-}
-.cart-action .check-out {
-	flex: 1;
-	display: flex;
-	justify-content: flex-end;
-	align-items: flex-end;
-	width: 100%;
-}
-.cart-action .check-out button {
-	padding: 7px 15px;
-	border-radius: 6px;
-	font-size: 17px;
-	/* border-color: rgba(0, 0, 0, .5); */
-	font-weight: bold;
-}
+
+
+
+
+
+
+
+
