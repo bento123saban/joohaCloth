@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-	<title>Judul halaman</title>
+	<title>Jooha-Shop</title>
+	
+	<!-- meta -->
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+	<meta name="description" content="">
+
 	<link rel="stylesheet" href="css/order.css">
 	<link rel="stylesheet" href="css/responsive.css">
-	<!-- <link rel="stylesheet" href="fontawesome/css/all.css"> -->
+	<link rel="stylesheet" href="fontawesome/css/all.css">
 
-	<script src="https://kit.fontawesome.com/b9a9bf6e53.js" crossorigin="anonymous"></script>
+	<!-- <script src="https://kit.fontawesome.com/b9a9bf6e53.js" crossorigin="anonymous"></script> -->
 </head>
 <body>
 <div class="body-box">
-	<nav class="navbar nav-bottom">
-		<div class="left">
-			<i class="fas fa-arrow-left" onclick="window.history.back()"></i> &nbsp 
-			<a id="nav-logo" href="#"><img src="" alt=""> Jooha-Clothes</a>
-		</div>
-		<h3>ORDER</h3>
-		<label class="to-home"><a href="index.html"><i class="fas fa-home"></i> HOME</a></label>
+	<nav class="navbar nav-edit">
+		<i class="fas fa-arrow-left" onclick="window.history.back()"></i>
+		<a id="nav-logo" href="#"><img src="" alt=""> JOHA-SHOP</a>
+		<a class="to-home" href="index.html"><i class="fas fa-home"></i> HOME</a>
 	</nav>
 
 	<div class="container">
@@ -52,9 +55,9 @@
 			<p class="order-ket">*Item yang diorder akan diantarkan ke alamat yang anda masukan. Pembayaran akan dilakukan ketika barang telah sampai ke anda (COD).</p>
 		</div>
 		<div class="cart">
-			<table id="order-table">
+			<table id="cart-table" width="100%">
 				<tbody>
-					<!-- catalog content -->
+					<!-- cart item content -->
 				</tbody>
 			</table>
 		</div>
@@ -70,6 +73,12 @@
 </div> <!-- body box -->
 
 <script src="js/order.js"></script>
-
+<script>
+	if(window.innerWidth <= 768) {
+		screen.orientation.lock("portrait");
+	} else {
+		screen.orientation.lock("natural");
+	}
+</script>
 </body>
 </html>
