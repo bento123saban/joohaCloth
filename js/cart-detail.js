@@ -8,9 +8,31 @@ if (getID == null || getID == undefined) {
 	var semuaProduk = JSON.parse(localStorage.getItem("semuaProduk"))
 	var i = semuaProduk.findIndex( x => x.ID == getID)
 	if (i > -1 && i < semuaProduk.length) {
-		let slide="", ukurans="", stock =""
-		console.info(semuaProduk[i].img[0])
-		semuaProduk[i].stok == 1 ? stock = "tersedia" : stock = "habis"
+		let slide="", ukurans="", stock ="", cek =''
+		if (semuaProduk[i].stok == 1) {
+			stock = "Tersedia"
+			cek = `
+			<div class="cart">
+				<button class="addToCart" id="addThis" onclick="addThisItem(this)" data-id="${semuaProduk[i].ID}">T A M B A H &nbsp &nbsp<i class="fas fa-cart-plus"></i> </button>
+				<label class="jumlah"><span class="itemCount" data-id="${semuaProduk[i].ID}"> </span>&nbsp ~ &nbsp<i class="fas fa-minus-circle" onclick="lessThisItem(this)" data-id="${semuaProduk[i].ID}"></i></label>
+			</div>
+			<label class="total">Total harga untuk
+				<span class="itemCount" data-id="${semuaProduk[i].ID}"> </span> item ini adalah Rp.
+				<span id="total-harga"> </span>.
+			</label>
+			<a class="order-one" href="order.html?q=one&id=${semuaProduk[i].ID}"> atau, Order untuk 1 item ini</a>
+			`
+		} else if (semuaProduk[i].stok == 0) {
+			stock = "Habis"
+			cek = `
+			<p class="detail-warning">Mohon maaf untuk sementara item ini sedang habis.<br/>Item akan tersedia kembali beberapa waktu kedepan.</p>
+			<label class="total">Total harga untuk
+				<span class="itemCount" data-id="${semuaProduk[i].ID}"> </span> item ini adalah Rp.
+				<span id="total-harga"> </span>.
+			</label>
+			`
+		}
+
 		for(let image in semuaProduk[i].img){
 			slide += `<img class="img" src="image/produk/${semuaProduk[i].img[image]}">`
 		}
@@ -50,15 +72,7 @@ if (getID == null || getID == undefined) {
 									<td id="stok">${stock}</td>
 								</tr>
 							</table>
-							<div class="cart">
-								<button class="addToCart" id="addThis" onclick="addThisItem(this)" data-id="${semuaProduk[i].ID}">T A M B A H &nbsp &nbsp<i class="fas fa-cart-plus"></i> </button>
-								<label class="jumlah"><span class="itemCount" data-id="${semuaProduk[i].ID}"> </span>&nbsp ~ &nbsp<i class="fas fa-minus-circle" onclick="lessThisItem(this)" data-id="${semuaProduk[i].ID}"></i></label>
-							</div>
-							<label class="total">Total harga untuk
-								<span class="itemCount" data-id="${semuaProduk[i].ID}"> </span> item ini adalah Rp.
-								<span id="total-harga"> </span>.
-							</label>
-							<a class="order-one" href="order.html?q=one&id=${semuaProduk[i].ID}"> atau, Order untuk 1 item ini</a>
+							${cek}
 							<div class="deskripsi">
 								<p>${semuaProduk[i].deskripsi}</p>
 							</div><!-- cata desc -->
@@ -81,34 +95,19 @@ const windowHeight = window.innerHeight
 
 // cart box control
 const cartBox = document.querySelector("#cartBox")
-
 const cartIcon = document.querySelector(".shopCartBox")
-cartIcon.onclick = function(){
-	if (cartBox.getBoundingClientRect().left >= windowWidth) {
-		cartBox.style.right = 0
-		document.getElementById("full-page").classList.toggle("cart")
-	} else {
-		cartBox.style.right = "-150%"
-		document.getElementById("full-page").classList.toggle("cart")
-	}
-}
 const cartClose = document.querySelector(".cart-close")
-cartClose.onclick = function(){
-	cartBox.style.right = "-150%"
-	document.getElementById("full-page").classList.toggle("cart")
-}
 const fullPage = document.querySelector("#full-page")
-fullPage.onclick = function() {
-	cartBox.style.right = "-150%"
-	document.getElementById("full-page").classList.toggle("cart")
-}
 
 // all function
 const itemsCount = document.querySelectorAll(".itemCount")
 if ( localStorage.getItem("joohaCart") == null || localStorage.getItem("joohaCart") == undefined) {
 	localStorage.setItem("joohaCart", JSON.stringify([]))
+	document.getElementById("cart-action").style.visibility = "hidden"
+    document.querySelector("#cart-count").innerHTML = ""
+    document.querySelector("#cart-table tbody").innerHTML = `<br><br> &nbsp &nbsp &nbsp &nbsp Belum ada item yang ditambahkan...`
 } else {
-	loadCek(semuaProduk[i].ID)
+	loadCek()
 	cartList()
 }
 function cartList() {
@@ -123,19 +122,28 @@ function cartList() {
             totalBayar = totalBayar + harga
             totalItem = totalItem + data.jumlah
             content = `
-                <tr>
-                    <td class="cart-img"><img src="image/produk/${data.img[0]}"></td>
-                    <td class="cart-nama"><a class="cart-link" href="detail.html?id=${data.ID}">${data.nama}</a></td>
-                    <td class="cart-jumlah" data-id="${data.ID}">
-                        <i title="Kurang" class="fas fa-minus cartLess" onclick="lessCart(this)"></i>
-                        <span>${data.jumlah}</span>
-                        <i title="Tambah" class="fas fa-plus cartAdd" onclick="addCart(this)"></i>
-                    </td>
-                    <td class="cart-harga">Rp. <span>${harga}</span></td>
-                    <td class="cart-edit">
-                        <i title="Hapus" onclick="cartDelete(this)" class="fas fa-trash" data-id="${data.ID}"></i>
-                    </td>
-                </tr> `
+                <tr class="item-cart">
+					<td class="img-cell" rowspan="2">
+						<div class="cart-img">
+							<img src="image/produk/${data.img[0]}">
+						</div>
+					</td>
+					<td class="nama-cell">
+						<a class="cart-to-detail" href="detail.html?id=${data.ID}">${data.nama}</i></a>
+						<p class="harga-item">Rp. <span>${harga}</span></p>
+					</td>
+				</tr>
+				<tr class="item-cart">
+ 					<td class="jumlah-cell">
+						<span class="item-kontrol" data-id="${data.ID}">
+							<i class="fas fa-chevron-left cartLess"></i>
+							<span class="jumlah-item">${data.jumlah}</span>
+							<i class="fas fa-chevron-right cartAdd"></i>
+						</span>
+						<i class="fas fa-trash cart-box-close cartDel" data-id="${data.ID}"></i>
+					</td>
+				</tr>
+				`
                 cartIndex += content
         })
         document.getElementById("cart-action").style.visibility = "visible"
@@ -145,37 +153,29 @@ function cartList() {
     }
     document.querySelector("#cart-table tbody").innerHTML = cartIndex
 }
-function totalSemua(){
-	let joohaCart = JSON.parse(localStorage.getItem("joohaCart"));
-	var totalHargaBayar = 0, totalItem = 0, totalProduk = 0;
-	joohaCart.map( data => {
-		totalHargaBayar += parseFloat(data.jumlah) * parseFloat(data.harga)
-		totalProduk += parseFloat(data.jumlah)
-		totalItem += 1
-	})
-	document.querySelector("#cart-count").innerHTML = totalProduk
-	document.querySelector("#tot-item").innerHTML = "Total Item : " + totalProduk
-	document.querySelector("#tot-harga").innerHTML = "Total Harga : Rp. " + totalHargaBayar
-}
-function loadCek(thisID) {
-	let params
-	JSON.parse(localStorage.getItem("joohaCart")).map( item => {
-		if (item.ID == thisID) {
-			document.getElementsByClassName("jumlah")[0].style.display = "block"
-			document.getElementsByClassName("total")[0].style.display = "block"
-			document.getElementById("total-harga").innerHTML = parseFloat(item.jumlah) * parseFloat(item.harga)
-			params = 1
-			itemsCount.forEach((itemCount) => {
-				if (itemCount.getAttribute("data-id") == thisID) {
-					itemCount.innerHTML = item.jumlah
-        		}
-    		})
-			return
+function loadCek() {
+	if (semuaProduk[i].stok == 0 ) {
+		return
+	} else if (semuaProduk[i].stok == 1 ) {
+		let params
+		JSON.parse(localStorage.getItem("joohaCart")).map( item => {
+			if (item.ID == getID) {
+				document.getElementsByClassName("jumlah")[0].style.display = "block"
+				document.getElementsByClassName("total")[0].style.display = "block"
+				document.getElementById("total-harga").innerHTML = parseFloat(item.jumlah) * parseFloat(item.harga)
+				params = 1
+				itemsCount.forEach((itemCount) => {
+					if (itemCount.getAttribute("data-id") == getID) {
+						itemCount.innerHTML = item.jumlah
+					}
+				})
+				return
+			}
+		})
+		if (params !== 1) {
+			document.getElementsByClassName("jumlah")[0].style.display = "none"
+			document.getElementsByClassName("total")[0].style.display = "none"
 		}
-	})
-	if (params !== 1) {
-		document.getElementsByClassName("jumlah")[0].style.display = "none"
-		document.getElementsByClassName("total")[0].style.display = "none"
 	}
 }
 function addThisItem(el){
@@ -201,7 +201,7 @@ function addThisItem(el){
         localStorage.setItem("joohaCart", JSON.stringify(joohaCart))
 	}
 	cartList()
-	loadCek(prodID)
+	loadCek()
 	all()
 }
 function lessThisItem(el) {
@@ -219,43 +219,35 @@ function lessThisItem(el) {
 	all()
 }
 
-function addCart(el) {
+function cartAdd(el) {
 	let joohaCart = JSON.parse(localStorage.getItem("joohaCart"))
 	const thisID = el.parentElement.getAttribute("data-id")
 	let i = joohaCart.findIndex( index => index.ID == thisID)
 	i == -1 ? location.reload() : ""
-	const thisHarga = parseFloat(joohaCart[i].harga)
-	const jumlah = parseFloat(joohaCart[i].jumlah) + 1
-	joohaCart[i].jumlah = jumlah
+	joohaCart[i].jumlah = parseFloat(joohaCart[i].jumlah) + 1
 	localStorage.setItem("joohaCart", JSON.stringify(joohaCart))
-	loadCek(thisID)
-	cartList()
+	loadCek()
 	all()
+	cartList()
 }
-function lessCart(el) {
+function cartLess(el) {
 	let joohaCart = JSON.parse(localStorage.getItem("joohaCart"))
 	const thisID = el.parentElement.getAttribute("data-id")
 	let i = joohaCart.findIndex(index => index.ID == thisID)
 	i == -1 ? location.reload() : ""
 	let jumlah = parseFloat(joohaCart[i].jumlah) - 1
-	const thisHarga = parseFloat(joohaCart[i].harga)
 	if (jumlah == 0) {
 		joohaCart.splice(i, 1)
 		localStorage.setItem("joohaCart", JSON.stringify(joohaCart))
-		cartList()
-		loadCek(thisID)
 	} else {
-		const harga = jumlah * thisHarga
 		joohaCart[i].jumlah = jumlah
-		el.parentElement.children[1].innerHTML = jumlah
-		el.parentElement.parentElement.children[3].innerHTML = "Rp. " + harga
 		localStorage.setItem("joohaCart", JSON.stringify(joohaCart))
-		loadCek(thisID)
 	}
-	totalSemua()
+	cartList()
+	loadCek()
 	all()
 }
-function cartDelete(el) {
+function cartDel(el) {
 	const thisID = el.getAttribute("data-id")
 	let joohaCart = JSON.parse(localStorage.getItem("joohaCart"))
 	let i = joohaCart.findIndex( index => index.ID == thisID)
@@ -263,25 +255,29 @@ function cartDelete(el) {
 	joohaCart.splice(i, 1)
 	localStorage.setItem("joohaCart", JSON.stringify(joohaCart))
 	cartList()
-	loadCek(thisID)
+	loadCek()
 	all()
 }
-function clearAll() {
-	localStorage.removeItem("joohaCart")
-	localStorage.setItem("joohaCart", JSON.stringify([]))
-	cartList()
-  	loadCek()
+function hapusSemua() {
+	if (confirm("Anda yakin akan mengahapus semua item dikeranjang anda ?")) {
+		localStorage.removeItem("joohaCart")
+		localStorage.setItem("joohaCart", JSON.stringify([]))
+		cartList()
+		loadCek()
+	}
 }
-
-
 
 
 const slides = document.querySelectorAll(".cata-slide img")
 const tombols = document.querySelectorAll(".cata-slide-btn span")
-slides[0].classList.add("onSlide")
 
-function slideThis() {
+slideThis(6000, 24000)
+
+function slideThis(interval, delay) {
 	slides[0].classList.add("onSlide")
+	let delaySet = false
+	let delaySlide = 1
+
 	function manual(i){
 		slides.forEach( img => {
 			img.classList.remove("onSlide")
@@ -294,43 +290,29 @@ function slideThis() {
 	}
 
 	let x = 1
-	const seribu = 1000
-	const interval = seribu * 10
-	var slideS = 1
+	var slideS = setInterval(slideShow, interval)
 	tombols.forEach( (span, i) => {
 		span.onclick = function() {
-			let a = parseFloat(i)
 			clearInterval(slideS)
-			manual(a)
-			let index = a
-			if (index >= 0) {
-				x = index + 1
+			manual(parseFloat(i))
+			x = parseFloat(i) + 1
+			if (delaySet == true) {
+				clearTimeout(delaySlide)
 			}
-			slideS = setInterval(function(){
-				slideShow()
-			}, interval)
+			delaySlide = setTimeout(function() {
+				slideS = setInterval(slideShow, interval)
+			}, delay)
+			delaySet = true
 		}
 	})
 	function slideShow(){
 		if (x >= slides.length) {
 			x = 0
 		}
-		slides.forEach( img => {
-			img.classList.remove("onSlide")
-			tombols.forEach( (span) => {
-				span.classList.remove("onSlide")
-			})
-		})
-		slides[x].classList.add("onSlide")
-		tombols[x].classList.add("onSlide")
+		manual(x)
 		++x
 	}
-
-	slideS = setInterval(function(){
-			slideShow()
-	}, interval)
 }
-slideThis()
 
 function all() {
 	let price = 0
@@ -341,3 +323,50 @@ function all() {
 	})
 	console.info(price, count)
 }
+
+
+function cartBoxControl() {
+	const cartBox = document.querySelector("#cartBox")
+	if (cartBox.getBoundingClientRect().left >= windowWidth) {
+		cartBox.style.right = 0
+		document.getElementById("full-page").classList.toggle("cart")
+	} else {
+		cartBox.style.right = "-150%"
+		document.getElementById("full-page").classList.toggle("cart")
+	}
+}
+
+window.addEventListener('click', function(e){
+	if (e.target.matches('.cart-close')) {
+		cartBox.style.right = "-150%"
+		document.getElementById("full-page").classList.toggle("cart")
+	}
+	if (e.target.matches('.cartLess')) {
+		cartLess(e.target)
+	}
+	if (e.target.matches('.cartAdd')) {
+		cartAdd(e.target)
+	}
+	if(e.target.matches('.cartDel')) {
+		cartDel(e.target)
+	}
+	if (e.target.matches('.hapus-semua')) {
+		hapusSemua()
+	}
+	if (e.target.matches('#full-page')) {
+		cartBox.style.right = "-150%"
+		document.getElementById("full-page").classList.toggle("cart")
+	}
+	if (e.target.matches('.shopCartBox')) {
+		cartBoxControl()
+	}
+	if (e.target.matches('.tambahItem')) {
+		addToCart(e.target)
+	}
+	if (e.target.matches('span.tipe')) {
+		tipeClick(e.target)
+		console.info(true)
+	}
+	console.info(e.target)
+})
+
