@@ -7,35 +7,31 @@ if (getOrder == 'all') {
 } else if (getOrder == 'one') {
     let getID = newURL.get("id")
     let verify = false
-    JSON.parse(localStorage.getItem("semuaProduk")).map( item => {
-        if (item.ID == getID){
-            document.querySelector("#total-item").innerHTML = "Jumlah item : 1"
-            document.querySelector("#total-harga").innerHTML = "Total : Rp. " + item.harga
-            let ukurans =""
-            let stock =""
-            for(let n in item.ukuran) {
-                ukurans += `<span>${item.ukuran[n]}</span>.`
-            }
-            if (item.stok == 1) {
-                stock = "tersedia"
-            } else {
-                stock = "habis"
-            }
-            document.querySelector("#order-table tbody").innerHTML = `
-                <tr class="order-list">
-                    <td>
-                        <img src="image/produk/${item.img[0]}">
-                        <h2><span>${item.nama}</span><span>Rp. ${item.harga}/Item</span></h2>
-                    </td>
-                </tr>
-            `
-            verify = true
+    let semuaProduk = JSON.parse(localStorage.getItem("semuaProduk"))
+    let n = semuaProduk.findIndex(index => index.ID == getID)
+    if (n >= 0) {
+        document.querySelector("#total-item").innerHTML = "Jumlah item : 1"
+        document.querySelector("#total-harga").innerHTML = "Total : Rp. " + semuaProduk[n].harga
+        let ukurans ="", stock =""
+        for(let x in semuaProduk[n].ukuran) {
+            ukurans += `<span>${semuaProduk[n].ukuran[x]}</span>.`
         }
-    })
-    if (verify !== true) {
+        semuaProduk[n].stok == 1 ? stock = "tersedia" : stock = "habis"
+        document.querySelector("#cart-table tbody").innerHTML = `
+            <tr>
+                <td class="order-one">
+                    <img src="image/produk/${semuaProduk[n].img[0]}" width="100%">
+                    <h2><span>${semuaProduk[n].nama}</span><span>Rp. ${semuaProduk[n].harga}/Item</span></h2>
+                </td>
+            </tr>
+        `
+    } else {
+        console.info("index null")
         location.replace("index.html")
+
     }
 } else {
+    console.info("getOrder null")
 	location.replace("index.html")
 }
 
@@ -49,103 +45,115 @@ function cartList() {
             totalBayar = totalBayar + harga
             totalItem = totalItem + data.jumlah
             let content = `
-                <tr>
-                    <td class="cart-img"><img src="image/produk/${data.img[0]}"></td>
-                    <td class="cart-nama"><a class="cart-link" href="detail.html?id=${data.ID}">${data.nama}</a></td>
-                    <td class="cart-jumlah" data-id="${data.ID}">
-                        <i title="Kurang" class="fas fa-minus cartLess" onclick="lessCart(this)"></i>
-                        <span>${data.jumlah}</span>
-                        <i title="Tambah" class="fas fa-plus cartAdd" onclick="addCart(this)"></i>
-                    </td>
-                    <td class="cart-harga">Rp. <span>${harga}</span></td>
-                    <td class="cart-edit">
-                        <i title="Hapus" onclick="cartDelete(this)" class="fas fa-trash" data-id="${data.ID}"></i>
-                    </td>
-                </tr>`
+               <tr class="item-cart">
+					<td class="img-cell" rowspan="2">
+						<div class="cart-img">
+							<img src="image/produk/${data.img[0]}">
+						</div>
+					</td>
+					<td class="nama-cell">
+						<a class="cart-to-detail" href="detail.html?id=01001">${data.nama}</i></a>
+						<p class="harga-item">Rp. <span>${harga}</span></p>
+					</td>
+				</tr>
+				<tr class="item-cart">
+ 					<td class="jumlah-cell">
+						<span class="item-kontrol" data-id="${data.ID}">
+							<i class="fas fa-chevron-left cartLess"></i>
+							<span class="jumlah-item">${data.jumlah}</span>
+							<i class="fas fa-chevron-right cartAdd"></i>
+						</span>
+						<i class="fas fa-trash cart-box-close cartDel" data-id="${data.ID}"></i>
+					</td>
+				</tr>
+                
+                `
             cartIndex += content
         })
         document.querySelector("#total-item").innerHTML = "Jumlah item : " + totalItem
         document.querySelector("#total-harga").innerHTML = "Total Harga : Rp. " + totalBayar
     }
-    document.querySelector("#order-table tbody").innerHTML = cartIndex
+    document.querySelector("#cart-table tbody").innerHTML = cartIndex
 }
 
-function addCart(el) {
-	let joohaCart = JSON.parse(localStorage.getItem("joohaCart"))
+window.addEventListener('click', function(e){
+	if (e.target.matches('.cartLess')) {
+		cartLess(e.target)
+	}
+	if (e.target.matches('.cartAdd')) {
+		cartAdd(e.target)
+	}
+	if(e.target.matches('.cartDel')) {
+        console.info('cartDel')
+		cartDel(e.target)
+	}
+	console.info(e.target)
+})
+function cartAdd(el) {
 	const thisID = el.parentElement.getAttribute("data-id")
-	joohaCart.map( item => {
+	let joohaCart = JSON.parse(localStorage.getItem("joohaCart"))
+	joohaCart.map(item => {
 		if (item.ID == thisID) {
-			const thisHarga = parseFloat(item.harga)
-			const jumlah = parseFloat(item.jumlah) + 1
-			item.jumlah = jumlah
-			el.parentElement.children[1].innerHTML = jumlah
-			el.parentElement.parentElement.children[3].innerText = "Rp. " + jumlah * thisHarga
+			item.jumlah = parseFloat(item.jumlah) + 1
 			localStorage.setItem("joohaCart", JSON.stringify(joohaCart))
-            cartList()
 		}
 	})
+	cartList()
 }
-function lessCart(el) {
+function cartLess(el) {
 	let joohaCart = JSON.parse(localStorage.getItem("joohaCart"))
 	const thisID = el.parentElement.getAttribute("data-id")
-    let count = 0;
+    let count = 1;
     if (joohaCart.length == 1) {
         if (joohaCart[0].jumlah == 1) {
             let conf = confirm("Apakah Anda ingin mengosongkan Keranjang anda ??")
-            if (conf == true) {
+            if (conf == true){
+                count = 0
                 localStorage.setItem("joohaCart", JSON.stringify([]))
                 location.replace("index.html")
-            } else {
-                count = 1
+                return
+            } else if (conf == false){
+                count = 0
             }
         }
     }
-    if (count !== 1) {
-        for (let n = 0; n < joohaCart.length; n++) {
-            if (joohaCart[n].ID == thisID) {
-                let jumlah = parseFloat(joohaCart[n].jumlah) - 1
-                const thisHarga = parseFloat(joohaCart[n].harga)
+    if (count !== 0) {
+        joohaCart.map((item, i) => {
+            if (item.ID == thisID) {
+                let jumlah = parseFloat(item.jumlah) - 1
                 if (jumlah == 0) {
-                    joohaCart.splice(n, 1)
+                    joohaCart.splice(i, 1)
                     localStorage.setItem("joohaCart", JSON.stringify(joohaCart))
                 } else {
-                    const harga = jumlah * thisHarga
-                    joohaCart[n].jumlah = jumlah
-                    el.parentElement.children[1].innerHTML = jumlah
-                    el.parentElement.parentElement.children[3].innerHTML = "Rp. " + harga
+                    item.jumlah = jumlah
                     localStorage.setItem("joohaCart", JSON.stringify(joohaCart))
                 }
-            } 
-        }
+            }
+        })
+        cartList()
     }
-    cartList()
 }
-function cartDelete(el) {
+
+
+
+function cartDel(el) {
+    console.info('cartDel')
 	const thisID = el.getAttribute("data-id")
 	let joohaCart = JSON.parse(localStorage.getItem("joohaCart"))
-    let count = 0
     if (joohaCart.length == 1) {
         let conf = confirm("Apakah Anda ingin mengosongkan Keranjang anda ??")
         if (conf == true) {
             localStorage.setItem("joohaCart", JSON.stringify([]))
             location.replace("index.html")
-        } else {
-            count = 1
+        } else if (conf == false){
         }
+    } else {
+        let i = joohaCart.findIndex(index => index.ID == thisID)
+        joohaCart.splice(i, 1)
+        localStorage.setItem("joohaCart", JSON.stringify(joohaCart))
+        cartList()
     }
-    if (count !== 1) {
-        for (let n = 0; n < joohaCart.length; n++) {
-            if (joohaCart[n].ID == thisID) {
-                joohaCart.splice(n, 1)
-                localStorage.setItem("joohaCart", JSON.stringify(joohaCart))
-            }
-        }
-    }
-    cartList()
 }
-
-
-
 
 
 const nama = document.querySelector("#nama")
@@ -215,28 +223,31 @@ telpon.onkeyup = function () {
 }
 
 let whatsCount = 6
-let timeSet=""
+let timeSet;
 const timeCount = document.querySelectorAll(".time-count")
 function whatsOrderList() {
-    clearTimeout(timeSet)
+    clearTimeout(timeSet) 
+    let semuaProduk = JSON.parse(localStorage.getItem("semuaProduk"))
     let decodeText =`New order - ${new Date} \n`
     let totalHarga = 0
     if(getOrder == 'all') {
         JSON.parse(localStorage.getItem("joohaCart")).map( data => {
-            decodeText += `${data.nama}(${data.jumlah}). `
+            decodeText += `${data.nama}*(${data.jumlah})*. `
             totalHarga += parseFloat(data.jumlah) * parseFloat(data.harga)
-        })
+        }) 
         localStorage.setItem("joohaCart", JSON.stringify([]))
     } else if (getOrder == 'one') {
         let getID = newURL.get("id")
         JSON.parse(localStorage.getItem("semuaProduk")).map(item => {
             if (item.ID == getID) {
-                decodeText += `${item.nama}(1).`
-                totalHarga += parseFloat(item.harga)
+                decodeText += `${item.nama}*(1)*.`
+                totalHarga += item.harga
             }
         })
+    } else {
+        location.replace("index.html")
     }
-    decodeText += `\nTotal : Rp. ${totalHarga} \n${nama.value}.\n${alamat.value}.\n${telpon.value}.\n Kirim segera !`
+    decodeText += `\n*Total : Rp. ${totalHarga}* \n_${nama.value}.\n${alamat.value}.\n${telpon.value}._`
 
     let encodeText = encodeURI(decodeText)
     let linkToWhatsApp = `https://api.whatsapp.com/send?phone=6281354741823&text=${encodeText}`
@@ -245,26 +256,24 @@ function whatsOrderList() {
     document.querySelector("button#order-fix").style.display = "none"
     document.querySelector(".navbar").style.zIndex = "100"
     console.info(linkToWhatsApp)
-    window.open(linkToWhatsApp)
+    // window.open(linkToWhatsApp)
 }
 function toWhatsApps() {
     timeCount.forEach( counter => {
         counter.innerText = "(" + whatsCount + ")"
     })
-    if (whatsCount == 0) {
+    if (whatsCount == 0){
+        clearTimeout(timeSet)
         whatsOrderList()
-        return false
     } else {
         whatsCount--
+        timeSet = setTimeout(toWhatsApps, 1500)
     }
-    timeSet = setTimeout(toWhatsApps, 1500)
 }
 function orderCek() {
-    if (rulesCheck.checked == false) {
+    rulesCheck.checked == false ?
         rules.classList.toggle("ket")
-    } else {
-        toWA.classList.add("order")
-        black.classList.add("block")
-        toWhatsApps()
-    }
- }
+        : toWA.classList.add("order")
+            + black.classList.add("block") + toWhatsApps()
+}
+
