@@ -11,10 +11,10 @@
 	<!-- link -->
 	<link rel="stylesheet" href="css/index.css">
 	<link rel="stylesheet" href="css/responsive.css">
-	<!-- <link rel="stylesheet" href="fontawesome/css/all.css">
+	<link rel="stylesheet" href="fontawesome/css/all.css">
 
 	<!-- script -->
-	<script src="https://kit.fontawesome.com/b9a9bf6e53.js" crossorigin="anonymous"></script>
+	<!-- <script src="https://kit.fontawesome.com/b9a9bf6e53.js" crossorigin="anonymous"></script> -->
 	<script src="js/cart-data.js"></script>
 </head>
 
@@ -310,27 +310,32 @@
 			</div>
 			<div class="kontak-label">
 				<label class="phone">
-					<a class="phone-link"><i class="fas fa-phone"></i><span>0822-3927-2644 </span></a></label>
+					<a class="phone-link"><i class="fas fa-phone"></i><span>0821-8948-1548 </span></a></label>
 				<label class="email">
 					<a class="email-link"><i class="fas fa-envelope"></i><span>JoohaShop@gmail.com</span></a></label>
 				<label class="address">
-					<a class="address-link" href="https://maps.app.goo.gl/WvTCiFmDrYsqGFJU7"><i class="fas fa-map-marker-alt"></i><span>Jl. Wolter Monginsidi, Lateri III Lorong rumah makan kok jr Rumah Orange, Lateri, Baguala, Kota Ambon, Maluku 97231</span></a></label>
+					<a class="address-link" href="https://maps.app.goo.gl/WvTCiFmDrYsqGFJU7">
+						<i class="fas fa-map-marker-alt"></i>
+						<span>Jl. Wolter Monginsidi, Lateri III, Lorong rumah makan Kok Jr. 
+							Rumah Orange, Lateri, Baguala, Kota Ambon, Maluku, 97231</span>
+					</a>
+				</label>
 			</div>
 			<div class="maps">
 				<div class="maps-box">
-					<div id="wrapper-9cd199b9cc5410cd3b1ad21cab2e54d3" class="maps-link">
-		<div id="map-9cd199b9cc5410cd3b1ad21cab2e54d3"></div><script>(function () {
-        var setting = {"height":260,"width":362,"zoom":18,"queryString":"JOHA AMBON STUDIO, Lateri, Kota Ambon, Maluku, Indonesia","place_id":"ChIJyXhz-FXtbC0RmykPrqR883U","satellite":false,"centerCoord":[-3.640111151010226,128.24455335],"cid":"0x75f37ca4ae0f299b","lang":"en","cityUrl":"/indonesia/ambon-36487","cityAnchorText":"Map of Ambon, Indonesia","id":"map-9cd199b9cc5410cd3b1ad21cab2e54d3","embed_id":"531875"};
-        var d = document;
-        var s = d.createElement('script');
-        s.src = 'https://1map.com/js/script-for-user.js?embed_id=531875';
-        s.async = true;
-        s.onload = function (e) {
-          window.OneMap.initMap(setting)
-        };
-        var to = d.getElementsByTagName('script')[0];
-        to.parentNode.insertBefore(s, to);
-      })();</script><a href="https://1map.com/map-embed">1 Map</a></div>
+					<div id="wrapper-9cd199b9cc5410cd3b1ad21cab2e54d3">
+						<div id="map-9cd199b9cc5410cd3b1ad21cab2e54d3"></div><script>(function () {
+						var setting = {"height":260,"width":362,"zoom":18,"queryString":"JOHA AMBON STUDIO, Lateri, Kota Ambon, Maluku, Indonesia","place_id":"ChIJyXhz-FXtbC0RmykPrqR883U","satellite":false,"centerCoord":[-3.640111151010226,128.24455335],"cid":"0x75f37ca4ae0f299b","lang":"en","cityUrl":"/indonesia/ambon-36487","cityAnchorText":"Map of Ambon, Indonesia","id":"map-9cd199b9cc5410cd3b1ad21cab2e54d3","embed_id":"531875"};
+						var d = document;
+						var s = d.createElement('script');
+						s.src = 'https://1map.com/js/script-for-user.js?embed_id=531875';
+						s.async = true;
+						s.onload = function (e) {
+						  window.OneMap.initMap(setting)
+						};
+						var to = d.getElementsByTagName('script')[0];
+						to.parentNode.insertBefore(s, to);
+					  })();</script><a href="https://1map.com/map-embed">1 Map</a></div>
 				</div>
 			</div>
 		</div> <!-- kontak list -->
@@ -373,10 +378,10 @@
 </footer>
 
 <!-- JS File -->
-<script src="js/cart-home.js"></script>
-<script src="js/promo-data.js"></script>
-<script src="js/slide-home.js"></script>
-<script src="js/index.js"></script>
+<!-- <script src="js/cart-home.js"></script> -->
+<!-- <script src="js/promo-data.js"></script> -->
+<!-- <script src="js/slide-home.js"></script> -->
+<!-- <script src="js/index.js"></script> -->
 
 <!-- script -->
 <script>
@@ -385,10 +390,9 @@
 	} else {
 		screen.orientation.lock("natural");
 	}
-
-document.querySelector(".maps-link").onclick = function(){
-Location.replace("https://maps.app.goo.gl/WvTCiFmDrYsqGFJU7");
-}
+	document.querySelector("#wrapper-9cd199b9cc5410cd3b1ad21cab2e54d3").addEventListener('click', function(){
+		location.replace('https://maps.app.goo.gl/WvTCiFmDrYsqGFJU7')
+	})
 </script>
 
 </body>
