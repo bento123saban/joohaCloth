@@ -57,7 +57,7 @@ header .slide-show {
 	position: absolute;
 }
 .slide-show .slide img.slideOn {
-	animation: pinch 9.5s linear;
+	animation: pinch 9.5s linear forwards;
 	animation-delay: .5s;
 }
 @keyframes pinch{
