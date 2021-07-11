@@ -378,6 +378,11 @@ h1 {
 }
 
 
+
+
+
+
+
 @media (max-width: 550px) {
 
 	.navbar .nav-fitur {
@@ -420,21 +425,29 @@ h1 {
 		font-size: 13px;
 	}
 
+
+	
 	.produk .produk-box .produk-kontrol .produk-tabs .tabs-group {
 		display: grid;
 		width: 100%;
 		grid-template-columns: repeat(4, auto);
-		grid-gap: 5px;
+		grid-gap: 3px;
 	}
 	.prod-menu {
 		margin: 0;
-		padding: 4px 0;
-		min-width: 80px;
+		padding: 3px 0;
+	    min-width: 75px;
 	}
+    .prod-menu.hover:hover {
+        transform: translateY(0);
+    }
+    .prod-menu.active {
+        transform: translateY(0);
+    }
 	.prod-menu span {
-		font-size: var(--textSize3);
-		padding: 5px 10px;
-		margin-left: 3px;
+		font-size: var(--textSize2);
+		padding: 6px 13px;
+        margin: 0;
 	}
 	.prod-menu i.menu-arrow {
 		height: 18px;
@@ -442,13 +455,17 @@ h1 {
 		font-size: 10px;
 		padding: 0;
 		margin: 0;
+        position: absolute;
+        top: 120%;
+        left: 50%;
+        transform: translateX(-50%);
 	}
 	.prod-menu i.menu-arrow:hover {
 		background-color: transparent;
 		color:darkcyan;
 	}
 	.prod-menu i.menu-arrow.active {
-		transform: rotate(90deg);
+        transform: rotate(90deg) translate(0%, 8px);
 		background-color: darkcyan;
 		color:white;
 		border: none;
@@ -457,7 +474,7 @@ h1 {
 		padding: 4px;
 		width: 130%;
 		margin: 0;
-		top: 125%;
+		top: 200%;
 	}
 	.prod-menu .prod-menu-ul .prod-menu-list {
 		margin: 5px auto;
