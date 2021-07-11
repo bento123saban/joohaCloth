@@ -250,7 +250,7 @@ function whatsOrderList() {
     decodeText += `\n*Total : Rp. ${totalHarga}* \n_${nama.value}.\n${alamat.value}.\n${telpon.value}._`
 
     let encodeText = encodeURI(decodeText)
-    let linkToWhatsApp = `https://wa.me/+6281354741823&text=${encodeText}`
+    let linkToWhatsApp = `https://wa.me/+6281354741823?text=${encodeText}`
     console.info(decodeText)
     document.querySelector(".to-wa-text").innerHTML = `Terima Kasih telah memesan item dari toko kami !!`
     document.querySelector("button#order-fix").style.display = "none"
