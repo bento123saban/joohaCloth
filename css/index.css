@@ -189,6 +189,8 @@ header .slide-show {
 	right: 10px;
 	z-index: -1;
 }
+
+
 .produk .produk-box .produk-kontrol .produk-tabs {
 	display: flex;
 	justify-content: center;
