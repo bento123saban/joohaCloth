@@ -351,9 +351,9 @@ header .slide-show {
 /* -------------------------------------- prod card -------------------------------------- */
 .prod-card {
 	position: relative;
-	width: 185px;
+	width: 175px;
 	height: 230px;
-	margin: 10px 15px;
+	margin: 10px auto;
 	font-size: var(--textSize2);
 	transition: all .5s ease-in-out;
 	z-index: 1;
