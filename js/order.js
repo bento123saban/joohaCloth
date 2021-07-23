@@ -256,7 +256,7 @@ function whatsOrderList() {
     document.querySelector("button#order-fix").style.display = "none"
     document.querySelector(".navbar").style.zIndex = "100"
     console.info(linkToWhatsApp)
-    // location.replace(linkTOWhatsApp)
+    location.replace(linkTOWhatsApp)
 }
 function toWhatsApps() {
     timeCount.forEach( counter => {
