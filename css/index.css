@@ -130,7 +130,37 @@ header .slide-show {
 	box-shadow: var(--boxShadow2);
 }
 
-
+#tambah-sukses {
+    position: fixed;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: min(400px, 70%);
+    padding: 4px 10px;
+    border-radius: 5px;
+    background: #123;
+    color: white;
+    border: 2px solid white;
+    box-shadow: 0 0 4px rgba(0, 0, 0, .5);
+    transition: all 1s ease-in;
+    font-size: 13px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: -10;
+    opacity: 0;
+}
+#tambah-sukses p {
+    margin: 0;
+    text-align: center;
+    padding: 0;
+}
+#tambah-sukses.add {
+    display: block;
+    opacity: 1;
+    top: 95%;
+    z-index: 10;
+}
 
 
 
@@ -640,3 +670,32 @@ footer {
 .to-top i {
 	color: var(--textColor2);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
