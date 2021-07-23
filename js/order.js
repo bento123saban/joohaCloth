@@ -225,9 +225,9 @@ telpon.onkeyup = function () {
 let whatsCount = 6
 let timeSet;
 const timeCount = document.querySelectorAll(".time-count")
+
 function whatsOrderList() {
     clearTimeout(timeSet) 
-    let semuaProduk = JSON.parse(localStorage.getItem("semuaProduk"))
     let decodeText =`New order - ${new Date} \n`
     let totalHarga = 0
     if(getOrder == 'all') {
@@ -256,7 +256,7 @@ function whatsOrderList() {
     document.querySelector("button#order-fix").style.display = "none"
     document.querySelector(".navbar").style.zIndex = "100"
     console.info(linkToWhatsApp)
-    location.replace(linkToWhatsApp)
+    // location.replace(linkTOWhatsApp)
 }
 function toWhatsApps() {
     timeCount.forEach( counter => {
